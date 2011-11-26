@@ -1,0 +1,85 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXFileReference section */
+		CCC4516F14807A6400F370E8 /* NSManagedObject+Utilities.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "NSManagedObject+Utilities.h"; path = "../NSManagedObject+Utilities.h"; sourceTree = "<group>"; };
+		CCC4517014807A6400F370E8 /* NSManagedObject+Utilities.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "NSManagedObject+Utilities.m"; path = "../NSManagedObject+Utilities.m"; sourceTree = "<group>"; };
+		CCC4517114807A6400F370E8 /* NSObject+Utilities.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "NSObject+Utilities.h"; path = "../NSObject+Utilities.h"; sourceTree = "<group>"; };
+		CCC4517214807A6400F370E8 /* NSObject+Utilities.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "NSObject+Utilities.m"; path = "../NSObject+Utilities.m"; sourceTree = "<group>"; };
+		CCC4517314807A6400F370E8 /* NSString+Utilities.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "NSString+Utilities.h"; path = "../NSString+Utilities.h"; sourceTree = "<group>"; };
+		CCC4517414807A6400F370E8 /* NSString+Utilities.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "NSString+Utilities.m"; path = "../NSString+Utilities.m"; sourceTree = "<group>"; };
+		CCC4517514807A6400F370E8 /* UAShared_Prefix.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = UAShared_Prefix.h; path = ../UAShared_Prefix.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		CCC4516614807A4F00F370E8 = {
+			isa = PBXGroup;
+			children = (
+				CCC4516F14807A6400F370E8 /* NSManagedObject+Utilities.h */,
+				CCC4517014807A6400F370E8 /* NSManagedObject+Utilities.m */,
+				CCC4517114807A6400F370E8 /* NSObject+Utilities.h */,
+				CCC4517214807A6400F370E8 /* NSObject+Utilities.m */,
+				CCC4517314807A6400F370E8 /* NSString+Utilities.h */,
+				CCC4517414807A6400F370E8 /* NSString+Utilities.m */,
+				CCC4517514807A6400F370E8 /* UAShared_Prefix.h */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXProject section */
+		CCC4516814807A4F00F370E8 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+				ORGANIZATIONNAME = "Owain R Hunt";
+			};
+			buildConfigurationList = CCC4516B14807A4F00F370E8 /* Build configuration list for PBXProject "UAShared" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = CCC4516614807A4F00F370E8;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+			);
+		};
+/* End PBXProject section */
+
+/* Begin XCBuildConfiguration section */
+		CCC4516D14807A4F00F370E8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		CCC4516E14807A4F00F370E8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CCC4516B14807A4F00F370E8 /* Build configuration list for PBXProject "UAShared" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CCC4516D14807A4F00F370E8 /* Debug */,
+				CCC4516E14807A4F00F370E8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CCC4516814807A4F00F370E8 /* Project object */;
+}
