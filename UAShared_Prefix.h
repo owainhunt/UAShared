@@ -6,6 +6,8 @@
 //  Copyright 2011 Owain R Hunt. All rights reserved.
 //
 
+#import <objc/runtime.h>
+
 #ifdef DEBUG
 #    define UALog(fmt, ...) NSLog(@"%s:%d (%s): " fmt, __FILE__, __LINE__, __func__, ## __VA_ARGS__)
 #else
