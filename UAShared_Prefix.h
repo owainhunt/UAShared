@@ -1,6 +1,6 @@
 //
 //  UAPrefix.h
-//  RecTest
+//  
 //
 //  Created by Owain Hunt on 08/01/2011.
 //  Copyright 2011 Owain R Hunt. All rights reserved.
@@ -20,4 +20,7 @@
             UALog(@"IBOutlet Assertion: %s is nil and appears to not be hooked up!",#_x_); \
         } \
     } while(0);
+
+#define unless(x) if(!x)
+#define until(x) while(!x)
 
