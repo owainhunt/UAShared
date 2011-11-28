@@ -8,7 +8,7 @@
 
 
 
-@interface NSManagedObject (Utilities)
+@interface NSManagedObjectContext (Utilities)
 
 - (id)managedObjectWithEntityName:(NSString *)entityName fromDictionary:(NSDictionary *)dictionary;
 

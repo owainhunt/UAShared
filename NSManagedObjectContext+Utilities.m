@@ -6,9 +6,9 @@
 //  Copyright (c) 2011 Owain R Hunt. All rights reserved.
 //
 
-#import "NSManagedObject+Utilities.h"
+#import "NSManagedObjectContext+Utilities.h"
 
-@implementation NSManagedObject (Utilities)
+@implementation NSManagedObjectContext (Utilities)
 
 - (id)managedObjectWithEntityName:(NSString *)entityName fromDictionary:(NSDictionary *)dictionary
 {
@@ -19,8 +19,8 @@
     
     if ([self countForFetchRequest:request error:nil] == 0)
     {
-        managedObject = [NSClassFromString(entityName) insertInManagedObjectContext:self];
-        for (NSString *key in [NSObject propertyKeysForClass:NSClassFromString(entityName)])
+        managedObject = [NSClassFromString(entityName) performSelector:@selector(insertInManagedObjectContext:) withObject:self];
+        for (NSString *key in [managedObject propertyKeys])
         {
             if ([[dictionary allKeys] containsObject:[key toUnderscore]])
             {
