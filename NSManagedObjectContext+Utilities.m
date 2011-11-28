@@ -20,10 +20,11 @@
     if ([self countForFetchRequest:request error:nil] == 0)
     {
         managedObject = [NSClassFromString(entityName) performSelector:@selector(insertInManagedObjectContext:) withObject:self];
-        for (NSString *key in [managedObject propertyKeys])
+        for (NSString *key in [[managedObject class] propertyKeys])
         {
             if ([[dictionary allKeys] containsObject:[key toUnderscore]])
             {
+#pragma mark TODO if objectForKey isKindOfClass:[NSArray class] find or create MO with obj m
                 [managedObject setValue:[dictionary objectForKey:[key toUnderscore]] forKey:key];
             }
         }
