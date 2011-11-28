@@ -10,6 +10,6 @@
 
 @interface NSObject (Utilities)
 
-+ (NSArray *)propertyKeysForClass:(Class)className;
++ (NSArray *)propertyKeys;
 
 @end
