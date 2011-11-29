@@ -16,24 +16,19 @@
 
     NSEntityDescription *entityDescription = [NSEntityDescription entityForName:entityName inManagedObjectContext:self];
     
-    id (^createObjectOfType)(Class, NSDictionary *);
-    createObjectOfType = ^(Class klass, NSDictionary *inputDictionary)
+    id (^updateManagedObjectWithDictionary)(id, NSDictionary *);
+    updateManagedObjectWithDictionary = ^(id theObject, NSDictionary *inputDictionary)
     {
-        NSEntityDescription *entityDescriptionForNewObject = [NSEntityDescription entityForName:NSStringFromClass(klass) inManagedObjectContext:self];
-        id aManagedObject = [klass performSelector:@selector(insertInManagedObjectContext:) withObject:self];
-        
-        for (NSString *attributeName in [[entityDescriptionForNewObject attributesByName] allKeys])
+        NSArray *attributeNames = [[[NSEntityDescription entityForName:NSStringFromClass([theObject class]) inManagedObjectContext:self] attributesByName] allKeys];
+        for (NSString *attributeName in attributeNames)
         {
             if ([[inputDictionary allKeys] containsObject:[attributeName toUnderscore]])
             {
-                [aManagedObject setValue:[inputDictionary objectForKey:[attributeName toUnderscore]] forKey:attributeName];
+                [theObject setValue:[inputDictionary objectForKey:[attributeName toUnderscore]] forKey:attributeName];
             }
         }
-        
-        return aManagedObject;
-
+        return theObject;
     };
-    
     
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     [request setEntity:entityDescription];
@@ -41,19 +36,20 @@
     {
         NSPredicate *pred = [NSPredicate predicateWithFormat:@"%@ LIKE %@", predicateKey, [dictionary objectForKey:[predicateKey toUnderscore]]];
         [request setPredicate:pred];
-        NSLog(@"%@", pred);
     }
     
     if ([self countForFetchRequest:request error:nil] == 0)
     {        
-        managedObject = createObjectOfType(NSClassFromString(entityName), dictionary);
+        managedObject = [NSClassFromString(entityName) performSelector:@selector(insertInManagedObjectContext:) withObject:self];
+        updateManagedObjectWithDictionary(managedObject, dictionary);
         
         for (NSString *relationshipName in [[entityDescription relationshipsByName] allKeys]) 
         {
             if ([[dictionary allKeys] containsObject:[relationshipName toUnderscore]]) 
             {
                 NSRelationshipDescription *relationshipDescription = [[entityDescription relationshipsByName] objectForKey:relationshipName];
-                id managedObjectForRelationship = createObjectOfType(NSClassFromString([[relationshipDescription destinationEntity] name]), [dictionary objectForKey:relationshipName]);
+                id managedObjectForRelationship = [NSClassFromString([[relationshipDescription destinationEntity] name]) performSelector:@selector(insertInManagedObjectContext:) withObject:self];
+                updateManagedObjectWithDictionary(managedObjectForRelationship, [dictionary objectForKey:relationshipName]);
                 
                 if ([relationshipDescription isToMany]) 
                 {
