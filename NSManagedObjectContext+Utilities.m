@@ -12,37 +12,25 @@
 
 - (id)managedObjectWithEntityName:(NSString *)entityName fromDictionary:(NSDictionary *)dictionary
 {
-    NSString *classPrefix = @"UAPOS";
-    
+    NSEntityDescription *entityDescription = [NSEntityDescription entityForName:entityName inManagedObjectContext:self];
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    [request setEntity:[NSEntityDescription entityForName:entityName inManagedObjectContext:self]];
+    [request setEntity:entityDescription];
     
 #pragma mark TODO Predicate (-managedObjectWithEntityName:fromDictionary:withPredicateKeys: ?)
     
-    __block NSMutableArray *arrayKeys = [NSMutableArray array];
-    __block NSMutableArray *dictionaryKeys = [NSMutableArray array];
     id managedObject;
 
-    id (^createObjectOfType)(Class klass, NSDictionary *inputDictionary);
+    id (^createObjectOfType)(Class, NSDictionary *);
     createObjectOfType = ^(Class klass, NSDictionary *inputDictionary)
     {
+        NSEntityDescription *entityDescriptionForNewObject = [NSEntityDescription entityForName:NSStringFromClass(klass) inManagedObjectContext:self];
         id aManagedObject = [klass performSelector:@selector(insertInManagedObjectContext:) withObject:self];
-        for (NSString *key in [[aManagedObject class] propertyKeys])
+        
+        for (NSString *attributeName in [[entityDescriptionForNewObject attributesByName] allKeys])
         {
-            if ([[inputDictionary allKeys] containsObject:[key toUnderscore]])
+            if ([[inputDictionary allKeys] containsObject:[attributeName toUnderscore]])
             {
-                if([[inputDictionary objectForKey:[key toUnderscore]] isKindOfClass:[NSArray class]])
-                {
-                    [arrayKeys addObject:key];
-                }
-                else if ([[inputDictionary objectForKey:[key toUnderscore]] isKindOfClass:[NSDictionary class]])
-                {
-                    [dictionaryKeys addObject:key];
-                }
-                else
-                {
-                    [aManagedObject setValue:[inputDictionary objectForKey:[key toUnderscore]] forKey:key];
-                }
+                [aManagedObject setValue:[inputDictionary objectForKey:[attributeName toUnderscore]] forKey:attributeName];
             }
         }
         
@@ -54,19 +42,33 @@
     if ([self countForFetchRequest:request error:nil] == 0)
     {        
         managedObject = createObjectOfType(NSClassFromString(entityName), dictionary);
-        /*
-        // Loop over dictionaryKeys and create/find MO for each object
-        for (NSString *dictionaryKey in dictionaryKeys) {
-            NSString *derivedEntityName = [NSString stringWithFormat:@"%@%@", classPrefix, [dictionaryKey substringToIndex:[dictionaryKey length]-1]];
-            NSFetchRequest *aRequest = [[NSFetchRequest alloc] init];
-            [request setEntity:[NSEntityDescription entityForName:derivedEntityName inManagedObjectContext:self]];
-            id aManagedObject;
-            
-            if ([self countForFetchRequest:aRequest error:nil] == 0)
+        
+        for (NSString *relationshipName in [[entityDescription relationshipsByName] allKeys]) 
+        {
+            if ([[dictionary allKeys] containsObject:[relationshipName toUnderscore]]) 
             {
-                aManagedObject = createObjectOfType(NSClassFromString(entityName), [dictionary objectForKey:dictionaryKey]);
+                NSRelationshipDescription *relationshipDescription = [[entityDescription relationshipsByName] objectForKey:relationshipName];
+                id managedObjectForRelationship = createObjectOfType(NSClassFromString([[relationshipDescription destinationEntity] name]), [dictionary objectForKey:relationshipName]);
+                
+                if ([relationshipDescription isToMany]) 
+                {
+                    NSMutableSet *relationshipSet = [[managedObject valueForKey:relationshipName] mutableCopy];
+                    if (relationshipSet != nil)
+                    {
+                        [relationshipSet addObject:managedObjectForRelationship];
+                    }
+                    else 
+                    {
+                        relationshipSet = [NSMutableSet setWithObject:managedObjectForRelationship];
+                    }
+                    [managedObject setValue:relationshipSet forKey:relationshipName];
+                }
+                else
+                {
+                    [managedObject setValue:managedObjectForRelationship forKey:relationshipName];
+                }
             }
-        }*/
+        }
     }
     else
     {
