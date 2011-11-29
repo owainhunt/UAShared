@@ -10,6 +10,6 @@
 
 @interface NSManagedObjectContext (Utilities)
 
-- (id)managedObjectWithEntityName:(NSString *)entityName fromDictionary:(NSDictionary *)dictionary;
+- (id)managedObjectWithEntityName:(NSString *)entityName fromDictionary:(NSDictionary *)dictionary withPredicateKey:(NSString *)predicateKey;
 
 @end

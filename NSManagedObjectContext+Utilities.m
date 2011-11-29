@@ -10,16 +10,12 @@
 
 @implementation NSManagedObjectContext (Utilities)
 
-- (id)managedObjectWithEntityName:(NSString *)entityName fromDictionary:(NSDictionary *)dictionary
+- (id)managedObjectWithEntityName:(NSString *)entityName fromDictionary:(NSDictionary *)dictionary withPredicateKey:(NSString *)predicateKey
 {
-    NSEntityDescription *entityDescription = [NSEntityDescription entityForName:entityName inManagedObjectContext:self];
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    [request setEntity:entityDescription];
-    
-#pragma mark TODO Predicate (-managedObjectWithEntityName:fromDictionary:withPredicateKeys: ?)
-    
     id managedObject;
 
+    NSEntityDescription *entityDescription = [NSEntityDescription entityForName:entityName inManagedObjectContext:self];
+    
     id (^createObjectOfType)(Class, NSDictionary *);
     createObjectOfType = ^(Class klass, NSDictionary *inputDictionary)
     {
@@ -38,6 +34,15 @@
 
     };
     
+    
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    [request setEntity:entityDescription];
+    if (predicateKey && [dictionary objectForKey:[predicateKey toUnderscore]] != nil)
+    {
+        NSPredicate *pred = [NSPredicate predicateWithFormat:@"%@ LIKE %@", predicateKey, [dictionary objectForKey:[predicateKey toUnderscore]]];
+        [request setPredicate:pred];
+        NSLog(@"%@", pred);
+    }
     
     if ([self countForFetchRequest:request error:nil] == 0)
     {        
