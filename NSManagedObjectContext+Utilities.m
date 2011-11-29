@@ -12,22 +12,61 @@
 
 - (id)managedObjectWithEntityName:(NSString *)entityName fromDictionary:(NSDictionary *)dictionary
 {
+    NSString *classPrefix = @"UAPOS";
+    
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     [request setEntity:[NSEntityDescription entityForName:entityName inManagedObjectContext:self]];
     
-    id managedObject;
+#pragma mark TODO Predicate (-managedObjectWithEntityName:fromDictionary:withPredicateKeys: ?)
     
-    if ([self countForFetchRequest:request error:nil] == 0)
+    __block NSMutableArray *arrayKeys = [NSMutableArray array];
+    __block NSMutableArray *dictionaryKeys = [NSMutableArray array];
+    id managedObject;
+
+    id (^createObjectOfType)(Class klass, NSDictionary *inputDictionary);
+    createObjectOfType = ^(Class klass, NSDictionary *inputDictionary)
     {
-        managedObject = [NSClassFromString(entityName) performSelector:@selector(insertInManagedObjectContext:) withObject:self];
-        for (NSString *key in [[managedObject class] propertyKeys])
+        id aManagedObject = [klass performSelector:@selector(insertInManagedObjectContext:) withObject:self];
+        for (NSString *key in [[aManagedObject class] propertyKeys])
         {
-            if ([[dictionary allKeys] containsObject:[key toUnderscore]])
+            if ([[inputDictionary allKeys] containsObject:[key toUnderscore]])
             {
-#pragma mark TODO if objectForKey isKindOfClass:[NSArray class] find or create MO with obj m
-                [managedObject setValue:[dictionary objectForKey:[key toUnderscore]] forKey:key];
+                if([[inputDictionary objectForKey:[key toUnderscore]] isKindOfClass:[NSArray class]])
+                {
+                    [arrayKeys addObject:key];
+                }
+                else if ([[inputDictionary objectForKey:[key toUnderscore]] isKindOfClass:[NSDictionary class]])
+                {
+                    [dictionaryKeys addObject:key];
+                }
+                else
+                {
+                    [aManagedObject setValue:[inputDictionary objectForKey:[key toUnderscore]] forKey:key];
+                }
             }
         }
+        
+        return aManagedObject;
+
+    };
+    
+    
+    if ([self countForFetchRequest:request error:nil] == 0)
+    {        
+        managedObject = createObjectOfType(NSClassFromString(entityName), dictionary);
+        /*
+        // Loop over dictionaryKeys and create/find MO for each object
+        for (NSString *dictionaryKey in dictionaryKeys) {
+            NSString *derivedEntityName = [NSString stringWithFormat:@"%@%@", classPrefix, [dictionaryKey substringToIndex:[dictionaryKey length]-1]];
+            NSFetchRequest *aRequest = [[NSFetchRequest alloc] init];
+            [request setEntity:[NSEntityDescription entityForName:derivedEntityName inManagedObjectContext:self]];
+            id aManagedObject;
+            
+            if ([self countForFetchRequest:aRequest error:nil] == 0)
+            {
+                aManagedObject = createObjectOfType(NSClassFromString(entityName), [dictionary objectForKey:dictionaryKey]);
+            }
+        }*/
     }
     else
     {
