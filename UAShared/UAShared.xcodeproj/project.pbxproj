@@ -9,6 +9,8 @@
 /* Begin PBXFileReference section */
 		CC117A771484449600BACF68 /* NSManagedObjectContext+Utilities.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "NSManagedObjectContext+Utilities.h"; path = "../NSManagedObjectContext+Utilities.h"; sourceTree = "<group>"; };
 		CC117A781484449600BACF68 /* NSManagedObjectContext+Utilities.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "NSManagedObjectContext+Utilities.m"; path = "../NSManagedObjectContext+Utilities.m"; sourceTree = "<group>"; };
+		CCA1186A14900634000B62A0 /* NSArray+Utilities.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+Utilities.h"; sourceTree = "<group>"; };
+		CCA1186B14900634000B62A0 /* NSArray+Utilities.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Utilities.m"; sourceTree = "<group>"; };
 		CCC4517114807A6400F370E8 /* NSObject+Utilities.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "NSObject+Utilities.h"; path = "../NSObject+Utilities.h"; sourceTree = "<group>"; };
 		CCC4517214807A6400F370E8 /* NSObject+Utilities.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "NSObject+Utilities.m"; path = "../NSObject+Utilities.m"; sourceTree = "<group>"; };
 		CCC4517314807A6400F370E8 /* NSString+Utilities.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "NSString+Utilities.h"; path = "../NSString+Utilities.h"; sourceTree = "<group>"; };
@@ -20,6 +22,8 @@
 		CCC4516614807A4F00F370E8 = {
 			isa = PBXGroup;
 			children = (
+				CCA1186A14900634000B62A0 /* NSArray+Utilities.h */,
+				CCA1186B14900634000B62A0 /* NSArray+Utilities.m */,
 				CC117A771484449600BACF68 /* NSManagedObjectContext+Utilities.h */,
 				CC117A781484449600BACF68 /* NSManagedObjectContext+Utilities.m */,
 				CCC4517114807A6400F370E8 /* NSObject+Utilities.h */,

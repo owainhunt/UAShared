@@ -54,4 +54,21 @@
     return output;
 }
 
+
+- (NSString *)encodedString
+{
+    return (__bridge_transfer NSString *)CFURLCreateStringByAddingPercentEscapes(NULL, (__bridge CFStringRef)self, NULL, (CFStringRef)@";/?:@&=$+{}<>,", kCFStringEncodingUTF8);
+    
+}
+
+
+- (NSDate *)dateFromISO8601String 
+{
+	NSDateFormatter *df = [[NSDateFormatter alloc] init];
+    [df setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss'Z'"];    
+    return [df dateFromString:self];   
+}
+
+
+
 @end

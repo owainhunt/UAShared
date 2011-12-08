@@ -15,7 +15,8 @@
 
 - (NSString *)toCamelCase;
 - (NSString *)toUnderscore;
-
+- (NSString *)encodedString;
+- (NSDate *)dateFromISO8601String;
 
 
 @end
