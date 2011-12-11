@@ -83,32 +83,9 @@
         return theObject;
     };
     
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    [request setEntity:entityDescription];
-    NSPredicate *predicate = [NSPredicate predicateWithValue:YES];
-    if (predicateKey && [dictionary objectForKey:[predicateKey toUnderscore]] != nil)
+    id (^updateManagedObjectRelationships)(NSManagedObject *, NSEntityDescription *);
+    updateManagedObjectRelationships = ^(NSManagedObject *managedObject, NSEntityDescription *entityDescription)
     {
-        predicate = [NSPredicate predicateWithFormat:@"%@ LIKE %@", predicateKey, [dictionary objectForKey:[predicateKey toUnderscore]]];
-    }
-    else if ([[entityDescription attributeKeys] containsObject:@"remoteObjectID"])
-    {
-        predicate = [NSPredicate predicateWithFormat:@"remoteObjectID == %@", [dictionary objectForKey:@"id"]];
-    }
-    
-    [request setPredicate:predicate];
-    
-    if ([self countForFetchRequest:request error:nil] == 0)
-    {        
-        NSLog(@"Creating new NSManagedObject: %@", entityName);
-        managedObject = [NSClassFromString(entityName) performSelector:@selector(insertInManagedObjectContext:) withObject:self];
-        updateManagedObjectWithDictionary(managedObject, dictionary);
-        
-        /*
-         
-         Extract to block.
-         
-         */
-        
         for (NSString *relationshipName in [[entityDescription relationshipsByName] allKeys]) 
         {
             if ([[dictionary allKeys] containsObject:[relationshipName toUnderscore]]) 
@@ -119,7 +96,13 @@
                 {
                     for (NSDictionary *objDictionary in [dictionary objectForKey:relationshipName])
                     {
-                        id managedObjectForRelationship = [NSClassFromString([[relationshipDescription destinationEntity] name]) performSelector:@selector(insertInManagedObjectContext:) withObject:self];
+                        id managedObjectForRelationship = [self managedObjectWithEntity:[relationshipDescription destinationEntity] dictionary:dictionary primaryKey:[primaryKeys objectForKey:[[relationshipDescription destinationEntity] name]]];
+                        
+                        if (!managedObjectForRelationship)
+                        {
+                            managedObjectForRelationship = [NSClassFromString([[relationshipDescription destinationEntity] name]) performSelector:@selector(insertInManagedObjectContext:) withObject:self];
+                        }
+                        
                         updateManagedObjectWithDictionary(managedObjectForRelationship, objDictionary);
                         
                         NSMutableSet *relationshipSet = [[managedObject valueForKey:relationshipName] mutableCopy];
@@ -143,12 +126,37 @@
                 }
             }
         }
+        return managedObject;
+    };
+
+    
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    [request setEntity:entityDescription];
+    NSPredicate *predicate = [NSPredicate predicateWithValue:YES];
+    if (predicateKey && [dictionary objectForKey:[predicateKey toUnderscore]] != nil)
+    {
+        predicate = [NSPredicate predicateWithFormat:@"%@ LIKE %@", predicateKey, [dictionary objectForKey:[predicateKey toUnderscore]]];
+    }
+    else if ([[entityDescription attributeKeys] containsObject:@"remoteObjectID"])
+    {
+        predicate = [NSPredicate predicateWithFormat:@"remoteObjectID == %@", [dictionary objectForKey:@"id"]];
+    }
+    
+    [request setPredicate:predicate];
+    
+    if ([self countForFetchRequest:request error:nil] == 0)
+    {        
+        NSLog(@"Creating new NSManagedObject: %@", entityName);
+        managedObject = [NSClassFromString(entityName) performSelector:@selector(insertInManagedObjectContext:) withObject:self];
+        updateManagedObjectWithDictionary(managedObject, dictionary);   
     }
     else
     {
         NSLog(@"NSManagedObject retrieved from data store: %@", entityName);
         managedObject = [[self executeFetchRequest:request error:nil] objectAtIndex:0];
     }
+    
+    updateManagedObjectRelationships(managedObject, entityDescription);
     
     return managedObject;
 }
