@@ -63,13 +63,16 @@
             }
             else if ([[inputDictionary allKeys] containsObject:[attributeName toUnderscore]])
             {
-                if ([[[[[NSEntityDescription entityForName:NSStringFromClass([theObject class]) inManagedObjectContext:self] attributesByName] objectForKey:attributeName] attributeValueClassName] isEqualToString:NSStringFromClass([NSDate class])])
+                if (![[inputDictionary objectForKey:[attributeName toUnderscore]] isEqual:[NSNull null]])
                 {
-                    [theObject setValue:[[inputDictionary objectForKey:[attributeName toUnderscore]] dateFromISO8601String] forKey:attributeName];
-                }
-                else
-                {
-                    [theObject setValue:[inputDictionary objectForKey:[attributeName toUnderscore]] forKey:attributeName];
+                    if ([[[[[NSEntityDescription entityForName:NSStringFromClass([theObject class]) inManagedObjectContext:self] attributesByName] objectForKey:attributeName] attributeValueClassName] isEqualToString:NSStringFromClass([NSDate class])])
+                    {
+                        [theObject setValue:[[inputDictionary objectForKey:[attributeName toUnderscore]] dateFromISO8601String] forKey:attributeName];
+                    }
+                    else
+                    {
+                        [theObject setValue:[inputDictionary objectForKey:[attributeName toUnderscore]] forKey:attributeName];
+                    }
                 }
             }
         }
