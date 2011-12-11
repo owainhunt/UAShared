@@ -149,4 +149,21 @@
     return managedObject;
 }
 
+
+- (id)managedObjectWithEntity:(NSEntityDescription *)entityDescription dictionary:(NSDictionary *)dictionary primaryKey:(NSString *)primaryKey
+{
+    NSFetchRequest *fetchRequest = [NSFetchRequest new];
+    [fetchRequest setEntity:entityDescription];
+    if (primaryKey)
+    {
+        [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"%@ LIKE %@", primaryKey, [dictionary objectForKey:[primaryKey toUnderscore]]]];        
+    }
+    else if ([[entityDescription attributeKeys] containsObject:@"remoteObjectID"])
+    {
+        [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"remoteObjectID == %@", [dictionary objectForKey:@"id"]]];
+    }
+
+    return [self countForFetchRequest:fetchRequest error:nil] ? [[self executeFetchRequest:fetchRequest error:nil] firstObject] : nil;
+}
+
 @end
