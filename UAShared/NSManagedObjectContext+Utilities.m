@@ -51,6 +51,10 @@
                                    @"description",  @"remoteObjectDescription",
                                    nil];
     
+    NSDictionary *primaryKeys = [NSDictionary dictionaryWithObjectsAndKeys:
+                                 @"name", @"IHLabel", 
+                                 nil];
+    
     id (^updateManagedObjectWithDictionary)(id, NSDictionary *);
     updateManagedObjectWithDictionary = ^(id theObject, NSDictionary *inputDictionary)
     {
