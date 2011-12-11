@@ -81,12 +81,12 @@
     
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     [request setEntity:entityDescription];
-    NSPredicate *predicate;
+    NSPredicate *predicate = [NSPredicate predicateWithValue:YES];
     if (predicateKey && [dictionary objectForKey:[predicateKey toUnderscore]] != nil)
     {
         predicate = [NSPredicate predicateWithFormat:@"%@ LIKE %@", predicateKey, [dictionary objectForKey:[predicateKey toUnderscore]]];
     }
-    else
+    else if ([[entityDescription attributeKeys] containsObject:@"remoteObjectID"])
     {
         predicate = [NSPredicate predicateWithFormat:@"remoteObjectID == %@", [dictionary objectForKey:@"id"]];
     }
@@ -95,8 +95,15 @@
     
     if ([self countForFetchRequest:request error:nil] == 0)
     {        
+        NSLog(@"Creating new NSManagedObject: %@", entityName);
         managedObject = [NSClassFromString(entityName) performSelector:@selector(insertInManagedObjectContext:) withObject:self];
         updateManagedObjectWithDictionary(managedObject, dictionary);
+        
+        /*
+         
+         Extract to block.
+         
+         */
         
         for (NSString *relationshipName in [[entityDescription relationshipsByName] allKeys]) 
         {
@@ -135,6 +142,7 @@
     }
     else
     {
+        NSLog(@"NSManagedObject retrieved from data store: %@", entityName);
         managedObject = [[self executeFetchRequest:request error:nil] objectAtIndex:0];
     }
     
