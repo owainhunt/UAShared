@@ -46,6 +46,10 @@
     id managedObject;
 
     NSEntityDescription *entityDescription = [NSEntityDescription entityForName:entityName inManagedObjectContext:self];
+    NSDictionary *reservedWords = [NSDictionary dictionaryWithObjectsAndKeys:
+                                   @"id",           @"remoteObjectID", 
+                                   @"description",  @"remoteObjectDescription",
+                                   nil];
     
     id (^updateManagedObjectWithDictionary)(id, NSDictionary *);
     updateManagedObjectWithDictionary = ^(id theObject, NSDictionary *inputDictionary)
@@ -53,9 +57,9 @@
         NSArray *attributeNames = [[[NSEntityDescription entityForName:NSStringFromClass([theObject class]) inManagedObjectContext:self] attributesByName] allKeys];
         for (NSString *attributeName in attributeNames)
         {
-            if ([attributeName isEqual:@"remoteObjectID"])
+            if ([[reservedWords allKeys] containsObject:attributeName])
             {
-                [theObject setValue:[inputDictionary objectForKey:@"id"] forKey:@"remoteObjectID"];
+                [theObject setValue:[inputDictionary objectForKey:[reservedWords objectForKey:attributeName]] forKey:attributeName];
             }
             else if ([[inputDictionary allKeys] containsObject:[attributeName toUnderscore]])
             {
