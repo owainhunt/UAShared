@@ -1,4 +1,0 @@
-Documentation set was installed to Xcode!
-
-Path: /Users/orhunt/Library/Developer/Shared/Documentation/DocSets/com.underscore.UAShared.docset
-Time: 2011-12-08 22:06:37 +0000
