@@ -103,25 +103,32 @@
             if ([[dictionary allKeys] containsObject:[relationshipName toUnderscore]]) 
             {
                 NSRelationshipDescription *relationshipDescription = [[entityDescription relationshipsByName] objectForKey:relationshipName];
-                id managedObjectForRelationship = [NSClassFromString([[relationshipDescription destinationEntity] name]) performSelector:@selector(insertInManagedObjectContext:) withObject:self];
-                updateManagedObjectWithDictionary(managedObjectForRelationship, [dictionary objectForKey:relationshipName]);
                 
-                if ([relationshipDescription isToMany]) 
+                if ([relationshipDescription isToMany])
                 {
-                    NSMutableSet *relationshipSet = [[managedObject valueForKey:relationshipName] mutableCopy];
-                    if (relationshipSet != nil)
+                    for (NSDictionary *objDictionary in [dictionary objectForKey:relationshipName])
                     {
-                        [relationshipSet addObject:managedObjectForRelationship];
+                        id managedObjectForRelationship = [NSClassFromString([[relationshipDescription destinationEntity] name]) performSelector:@selector(insertInManagedObjectContext:) withObject:self];
+                        updateManagedObjectWithDictionary(managedObjectForRelationship, objDictionary);
+                        
+                        NSMutableSet *relationshipSet = [[managedObject valueForKey:relationshipName] mutableCopy];
+                        if (relationshipSet != nil)
+                        {
+                            [relationshipSet addObject:managedObjectForRelationship];
+                        }
+                        else 
+                        {
+                            relationshipSet = [NSMutableSet setWithObject:managedObjectForRelationship];
+                        }
+                        [managedObject setValue:relationshipSet forKey:relationshipName];
                     }
-                    else 
-                    {
-                        relationshipSet = [NSMutableSet setWithObject:managedObjectForRelationship];
-                    }
-                    [managedObject setValue:relationshipSet forKey:relationshipName];
                 }
                 else
                 {
-                    [managedObject setValue:managedObjectForRelationship forKey:relationshipName];
+                    id managedObjectForRelationship = [NSClassFromString([[relationshipDescription destinationEntity] name]) performSelector:@selector(insertInManagedObjectContext:) withObject:self];
+                    updateManagedObjectWithDictionary(managedObjectForRelationship, [dictionary objectForKey:relationshipName]);
+                    
+                    [managedObject setValue:managedObjectForRelationship forKey:relationshipName];   
                 }
             }
         }
