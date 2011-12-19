@@ -203,41 +203,80 @@
 - (id)JSONRepresentationForObject:(NSManagedObject *)managedObject
 {
     NSMutableDictionary *managedObjectAsDictionary = [NSMutableDictionary new];
-    NSEntityDescription *entity = [managedObject entity];
     
     NSDictionary *reservedWords = [NSDictionary dictionaryWithObjectsAndKeys:
                                    @"id",           @"remoteObjectID", 
                                    @"description",  @"remoteObjectDescription",
                                    nil];
 
-    NSArray *attributeNames = [[entity attributesByName] allKeys];
     
-    for (NSString *attributeName in attributeNames)
+    NSMutableDictionary *(^attributesForManagedObject)(id, NSEntityDescription *);
+    attributesForManagedObject = ^(id obj, NSEntityDescription *entity)
     {
-        NSAttributeDescription *attributeDescription = [[entity attributesByName] objectForKey:attributeName];
-        NSString *attributeNameAsDictionaryKey;
+        NSMutableDictionary *dictionary = [NSMutableDictionary new];
+        NSArray *attributeNames = [[entity attributesByName] allKeys];
         
-        if ([[reservedWords allKeys] containsObject:attributeName])
+        for (NSString *attributeName in attributeNames)
         {
-            attributeNameAsDictionaryKey = [reservedWords objectForKey:attributeName];
+            NSAttributeDescription *attributeDescription = [[entity attributesByName] objectForKey:attributeName];
+            NSString *attributeNameAsDictionaryKey;
+            
+            if ([[reservedWords allKeys] containsObject:attributeName])
+            {
+                attributeNameAsDictionaryKey = [reservedWords objectForKey:attributeName];
+            }
+            else 
+            {
+                attributeNameAsDictionaryKey = [attributeName toUnderscore];
+            }
+            
+            switch ([attributeDescription attributeType]) 
+            {
+                case NSDateAttributeType:
+                    [dictionary setValue:[[managedObject valueForKey:attributeName] ISO8601StringFromDate] forKey:attributeNameAsDictionaryKey];
+                    break;
+                    
+                default:
+                    [dictionary setValue:[managedObject valueForKey:attributeName] forKey:attributeNameAsDictionaryKey];
+                    break;
+            }
+            
+        }
+        
+        return dictionary;
+    };   
+    
+    managedObjectAsDictionary = attributesForManagedObject(managedObject, [managedObject entity]);
+    
+    for (NSString *relationshipName in [[managedObject entity] relationshipsByName])
+    {
+        NSString *relationshipNameAsDictionaryKey;
+        
+        if ([[reservedWords allKeys] containsObject:relationshipName])
+        {
+            relationshipNameAsDictionaryKey = [reservedWords objectForKey:relationshipName];
         }
         else 
         {
-            attributeNameAsDictionaryKey = [attributeName toUnderscore];
+            relationshipNameAsDictionaryKey = [relationshipName toUnderscore];
         }
-        
-        switch ([attributeDescription attributeType]) {
-            case NSDateAttributeType:
-                [managedObjectAsDictionary setValue:[[managedObject valueForKey:attributeName] ISO8601StringFromDate] forKey:attributeNameAsDictionaryKey];
-                break;
-                
-            default:
-                [managedObjectAsDictionary setValue:[managedObject valueForKey:attributeName] forKey:attributeNameAsDictionaryKey];
-                break;
+
+        NSRelationshipDescription *relationship = [[[managedObject entity] relationshipsByName] objectForKey:relationshipName];
+        if ([relationship isToMany])
+        {
+            NSMutableArray *relationshipObjects = [NSMutableArray array];
+            for (id obj in [managedObject valueForKey:relationshipName])
+            {
+                [relationshipObjects addObject:attributesForManagedObject(obj, [obj entity])];
+            }
+            
+            [managedObjectAsDictionary setValue:relationshipObjects forKey:relationshipNameAsDictionaryKey];
         }
-        
+        else
+        {
+            [managedObjectAsDictionary setValue:attributesForManagedObject([managedObject valueForKey:relationshipName], [relationship destinationEntity]) forKey:relationshipNameAsDictionaryKey];
+        }
     }
-    
     
     return [NSJSONSerialization dataWithJSONObject:managedObjectAsDictionary options:NSJSONWritingPrettyPrinted error:nil];
 }
