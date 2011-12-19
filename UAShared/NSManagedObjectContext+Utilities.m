@@ -7,7 +7,15 @@
 //
 
 /** 
+ 
  Extends `NSManagedObjectContext` for the purpose of working with external data, for example a web service. 
+ 
+ Relies on the remote and local (Core Data) data stores following a number of structural and naming conventions. 
+ 
+ - The remote must use underscore case for its attributes; camel case must be used locally.
+ - For remote attributes to be mirrored locally, the local attribute must use the same name as the remote attribute, adjusted for case. For example, `my_object_attribute` on the remote, and `myObjectAttribute` locally.
+ - The value of remote attributes whose names would conflict with methods or properties on `NSObject` or `NSManagedObject` are stored locally with the prefix `remoteObject`. For example, `id` becomes `remoteObjectId` and `description` becomes `remoteObjectDescription`.
+
  */
 
 #import "NSManagedObjectContext+Utilities.h"
@@ -17,15 +25,6 @@
 /**
  
  Returns a managed object, either newly created or retrieved from the data store based on `dictionary` and `entityName`.
- 
- Relies on the incoming dictionary and the attribute names of the given entity following a number of conventions. 
- 
- For the sake of clarity, assume that the given `dictionary` has been parsed from JSON retrieved from a web service, and will henceforth be referred to as the 'remote' data.
- The data store and managed object model will be referred to as the 'local' data.
- 
- - The remote must use underscore case for its attributes; camel case must be used locally.
- - For remote attributes to be mirrored locally, the local attribute must use the same name as the remote attribute, adjusted for case. For example, `my_object_attribute` on the remote, and `myObjectAttribute` locally.
- - The value of remote attributes whose names would conflict with methods or properties on `NSObject` or `NSManagedObject` are stored locally with the prefix `remoteObject`. For example, `id` becomes `remoteObjectId` and `description` becomes `remoteObjectDescription`.
  
  This method first sets up an `NSFetchRequest` using `entityName`. The `NSPredicate` for this fetch request uses either `predicateKey`, or the object for the `id` key in `dictionary` if `predicateKey` is not given.
  
@@ -161,6 +160,19 @@
     return managedObject;
 }
 
+
+/**
+ 
+ Returns a managed object, if one exists, based on the given `entityDescription`, `dictionary` and `primaryKey`.
+ Uses the object for the `primaryKey` in `dictionary` as a predicate key. If `primaryKey` is nil and `remoteObjectID` is an attribute on the given entity, this key is used instead. If neither case is true, no predicate is used.
+ 
+ @param entityDescription The entity description of the object to be found.
+ @param dictionary An NSDictionary representation of the object to be found.
+ @param primaryKey The key to be used in a predicate to restrict the fetch request.
+ 
+ @return A managed object, or nil if an object matching the criteria cannot be found.
+ 
+ */
 
 - (id)managedObjectWithEntity:(NSEntityDescription *)entityDescription dictionary:(NSDictionary *)dictionary primaryKey:(NSString *)primaryKey
 {
