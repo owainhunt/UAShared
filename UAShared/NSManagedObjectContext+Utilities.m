@@ -137,7 +137,7 @@
     {
         predicate = [NSPredicate predicateWithFormat:@"%@ LIKE %@", predicateKey, [dictionary objectForKey:[predicateKey toUnderscore]]];
     }
-    else if ([[entityDescription attributeKeys] containsObject:@"remoteObjectID"])
+    else if ([[[entityDescription attributesByName] allKeys] containsObject:@"remoteObjectID"])
     {
         predicate = [NSPredicate predicateWithFormat:@"remoteObjectID == %@", [dictionary objectForKey:@"id"]];
     }
@@ -170,7 +170,7 @@
     {
         [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"%@ LIKE %@", primaryKey, [dictionary objectForKey:[primaryKey toUnderscore]]]];        
     }
-    else if ([[entityDescription attributeKeys] containsObject:@"remoteObjectID"])
+    else if ([[[entityDescription attributesByName] allKeys] containsObject:@"remoteObjectID"])
     {
         [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"remoteObjectID == %@", [dictionary objectForKey:@"id"]]];
     }
