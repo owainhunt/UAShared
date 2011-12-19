@@ -190,4 +190,56 @@
     return [self countForFetchRequest:fetchRequest error:nil] ? [[self executeFetchRequest:fetchRequest error:nil] firstObject] : nil;
 }
 
+
+/**
+ 
+ Returns a JSON representation of a managed object, based on the rules set forth in the class discussion.
+ 
+ @returns A JSON representation of the given managed object 
+ @param managedObject A managed object.
+ 
+ */
+
+- (id)JSONRepresentationForObject:(NSManagedObject *)managedObject
+{
+    NSMutableDictionary *managedObjectAsDictionary = [NSMutableDictionary new];
+    NSEntityDescription *entity = [managedObject entity];
+    
+    NSDictionary *reservedWords = [NSDictionary dictionaryWithObjectsAndKeys:
+                                   @"id",           @"remoteObjectID", 
+                                   @"description",  @"remoteObjectDescription",
+                                   nil];
+
+    NSArray *attributeNames = [[entity attributesByName] allKeys];
+    
+    for (NSString *attributeName in attributeNames)
+    {
+        NSAttributeDescription *attributeDescription = [[entity attributesByName] objectForKey:attributeName];
+        NSString *attributeNameAsDictionaryKey;
+        
+        if ([[reservedWords allKeys] containsObject:attributeName])
+        {
+            attributeNameAsDictionaryKey = [reservedWords objectForKey:attributeName];
+        }
+        else 
+        {
+            attributeNameAsDictionaryKey = [attributeName toUnderscore];
+        }
+        
+        switch ([attributeDescription attributeType]) {
+            case NSDateAttributeType:
+                [managedObjectAsDictionary setValue:[[managedObject valueForKey:attributeName] ISO8601StringFromDate] forKey:attributeNameAsDictionaryKey];
+                break;
+                
+            default:
+                [managedObjectAsDictionary setValue:[managedObject valueForKey:attributeName] forKey:attributeNameAsDictionaryKey];
+                break;
+        }
+        
+    }
+    
+    
+    return [NSJSONSerialization dataWithJSONObject:managedObjectAsDictionary options:NSJSONWritingPrettyPrinted error:nil];
+}
+
 @end
