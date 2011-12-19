@@ -45,11 +45,23 @@
     id managedObject;
 
     NSEntityDescription *entityDescription = [NSEntityDescription entityForName:entityName inManagedObjectContext:self];
-    NSDictionary *reservedWords = [NSDictionary dictionaryWithObjectsAndKeys:
-                                   @"id",           @"remoteObjectID", 
-                                   @"description",  @"remoteObjectDescription",
-                                   nil];
     
+    NSString *errorDesc = nil;
+    NSPropertyListFormat format;
+    NSString *plistPath;
+    NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    plistPath = [rootPath stringByAppendingPathComponent:@"ReservedWords.plist"];
+    if (![[NSFileManager defaultManager] fileExistsAtPath:plistPath]) 
+    {
+        plistPath = [[NSBundle mainBundle] pathForResource:@"ReservedWords" ofType:@"plist"];
+    }
+    NSData *plistXML = [[NSFileManager defaultManager] contentsAtPath:plistPath];
+    NSDictionary *reservedWords = (NSDictionary *)[NSPropertyListSerialization
+                                          propertyListFromData:plistXML
+                                          mutabilityOption:NSPropertyListMutableContainersAndLeaves
+                                          format:&format
+                                          errorDescription:&errorDesc];
+       
     NSDictionary *primaryKeys = [NSDictionary dictionaryWithObjectsAndKeys:
                                  @"name", @"IHLabel", 
                                  nil];
