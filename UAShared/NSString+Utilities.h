@@ -18,5 +18,4 @@
 - (NSString *)encodedString;
 - (NSDate *)dateFromISO8601String;
 
-
 @end

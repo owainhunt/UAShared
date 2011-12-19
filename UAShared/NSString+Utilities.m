@@ -57,8 +57,7 @@
 
 - (NSString *)encodedString
 {
-    return (__bridge_transfer NSString *)CFURLCreateStringByAddingPercentEscapes(NULL, (__bridge CFStringRef)self, NULL, (CFStringRef)@";/?:@&=$+{}<>,", kCFStringEncodingUTF8);
-    
+    return (__bridge_transfer NSString *)CFURLCreateStringByAddingPercentEscapes(NULL, (__bridge CFStringRef)self, NULL, (CFStringRef)@";/?:@&=$+{}<>,", kCFStringEncodingUTF8);    
 }
 
 
@@ -68,7 +67,5 @@
     [df setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss'Z'"];    
     return [df dateFromString:self];   
 }
-
-
 
 @end

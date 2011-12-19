@@ -6,31 +6,49 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		CC4A382614952349004B7653 /* Documentation */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = CC4A382714952349004B7653 /* Build configuration list for PBXAggregateTarget "Documentation" */;
+			buildPhases = (
+				CC4A382A14952404004B7653 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = Documentation;
+			productName = Documentation;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXFileReference section */
-		CC117A771484449600BACF68 /* NSManagedObjectContext+Utilities.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "NSManagedObjectContext+Utilities.h"; path = "../NSManagedObjectContext+Utilities.h"; sourceTree = "<group>"; };
-		CC117A781484449600BACF68 /* NSManagedObjectContext+Utilities.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "NSManagedObjectContext+Utilities.m"; path = "../NSManagedObjectContext+Utilities.m"; sourceTree = "<group>"; };
+		CC0EBAC6149FE8C800A301DD /* NSDate+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Utilities.h"; sourceTree = "<group>"; };
+		CC0EBAC7149FE8C800A301DD /* NSDate+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Utilities.m"; sourceTree = "<group>"; };
+		CC4A381E149522D9004B7653 /* NSManagedObjectContext+Utilities.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSManagedObjectContext+Utilities.h"; sourceTree = "<group>"; };
+		CC4A381F149522D9004B7653 /* NSManagedObjectContext+Utilities.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObjectContext+Utilities.m"; sourceTree = "<group>"; };
+		CC4A3820149522D9004B7653 /* NSObject+Utilities.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+Utilities.h"; sourceTree = "<group>"; };
+		CC4A3821149522D9004B7653 /* NSObject+Utilities.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Utilities.m"; sourceTree = "<group>"; };
+		CC4A3822149522D9004B7653 /* NSString+Utilities.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Utilities.h"; sourceTree = "<group>"; };
+		CC4A3823149522D9004B7653 /* NSString+Utilities.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+Utilities.m"; sourceTree = "<group>"; };
+		CC4A3824149522D9004B7653 /* UAShared_Prefix.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UAShared_Prefix.h; sourceTree = "<group>"; };
 		CCA1186A14900634000B62A0 /* NSArray+Utilities.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+Utilities.h"; sourceTree = "<group>"; };
 		CCA1186B14900634000B62A0 /* NSArray+Utilities.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Utilities.m"; sourceTree = "<group>"; };
-		CCC4517114807A6400F370E8 /* NSObject+Utilities.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "NSObject+Utilities.h"; path = "../NSObject+Utilities.h"; sourceTree = "<group>"; };
-		CCC4517214807A6400F370E8 /* NSObject+Utilities.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "NSObject+Utilities.m"; path = "../NSObject+Utilities.m"; sourceTree = "<group>"; };
-		CCC4517314807A6400F370E8 /* NSString+Utilities.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "NSString+Utilities.h"; path = "../NSString+Utilities.h"; sourceTree = "<group>"; };
-		CCC4517414807A6400F370E8 /* NSString+Utilities.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "NSString+Utilities.m"; path = "../NSString+Utilities.m"; sourceTree = "<group>"; };
-		CCC4517514807A6400F370E8 /* UAShared_Prefix.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = UAShared_Prefix.h; path = ../UAShared_Prefix.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
 		CCC4516614807A4F00F370E8 = {
 			isa = PBXGroup;
 			children = (
+				CC4A381E149522D9004B7653 /* NSManagedObjectContext+Utilities.h */,
+				CC4A381F149522D9004B7653 /* NSManagedObjectContext+Utilities.m */,
+				CC4A3820149522D9004B7653 /* NSObject+Utilities.h */,
+				CC4A3821149522D9004B7653 /* NSObject+Utilities.m */,
+				CC0EBAC6149FE8C800A301DD /* NSDate+Utilities.h */,
+				CC0EBAC7149FE8C800A301DD /* NSDate+Utilities.m */,
+				CC4A3822149522D9004B7653 /* NSString+Utilities.h */,
+				CC4A3823149522D9004B7653 /* NSString+Utilities.m */,
+				CC4A3824149522D9004B7653 /* UAShared_Prefix.h */,
 				CCA1186A14900634000B62A0 /* NSArray+Utilities.h */,
 				CCA1186B14900634000B62A0 /* NSArray+Utilities.m */,
-				CC117A771484449600BACF68 /* NSManagedObjectContext+Utilities.h */,
-				CC117A781484449600BACF68 /* NSManagedObjectContext+Utilities.m */,
-				CCC4517114807A6400F370E8 /* NSObject+Utilities.h */,
-				CCC4517214807A6400F370E8 /* NSObject+Utilities.m */,
-				CCC4517314807A6400F370E8 /* NSString+Utilities.h */,
-				CCC4517414807A6400F370E8 /* NSString+Utilities.m */,
-				CCC4517514807A6400F370E8 /* UAShared_Prefix.h */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,11 +72,42 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
+				CC4A382614952349004B7653 /* Documentation */,
 			);
 		};
 /* End PBXProject section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		CC4A382A14952404004B7653 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "/usr/local/cellar/appledoc/2.0.4/bin/appledoc --project-name $PROJECT_NAME --project-company \"Underscore Apps\" --company-id com.underscore --output $SOURCE_ROOT/docs --logformat xcode .\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin XCBuildConfiguration section */
+		CC4A382814952349004B7653 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		CC4A382914952349004B7653 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		CCC4516D14807A4F00F370E8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -74,6 +123,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		CC4A382714952349004B7653 /* Build configuration list for PBXAggregateTarget "Documentation" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CC4A382814952349004B7653 /* Debug */,
+				CC4A382914952349004B7653 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		CCC4516B14807A4F00F370E8 /* Build configuration list for PBXProject "UAShared" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
