@@ -32,12 +32,20 @@
 		CC4A3824149522D9004B7653 /* UAShared_Prefix.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UAShared_Prefix.h; sourceTree = "<group>"; };
 		CCA1186A14900634000B62A0 /* NSArray+Utilities.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+Utilities.h"; sourceTree = "<group>"; };
 		CCA1186B14900634000B62A0 /* NSArray+Utilities.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Utilities.m"; sourceTree = "<group>"; };
+		CCBE1B5C14BF8E1100C538FE /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
+		CCBE1B5D14BF8E1100C538FE /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
+		CCBE1B6B14C0CF0000C538FE /* NSManagedObject+URI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+URI.h"; sourceTree = "<group>"; };
+		CCBE1B6C14C0CF0000C538FE /* NSManagedObject+URI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+URI.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
 		CCC4516614807A4F00F370E8 = {
 			isa = PBXGroup;
 			children = (
+				CCBE1B6B14C0CF0000C538FE /* NSManagedObject+URI.h */,
+				CCBE1B6C14C0CF0000C538FE /* NSManagedObject+URI.m */,
+				CCBE1B5C14BF8E1100C538FE /* NSData+Base64.h */,
+				CCBE1B5D14BF8E1100C538FE /* NSData+Base64.m */,
 				CC4A381E149522D9004B7653 /* NSManagedObjectContext+Utilities.h */,
 				CC4A381F149522D9004B7653 /* NSManagedObjectContext+Utilities.m */,
 				CC4A3820149522D9004B7653 /* NSObject+Utilities.h */,
