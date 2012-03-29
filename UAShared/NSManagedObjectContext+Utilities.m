@@ -199,7 +199,7 @@
     [fetchRequest setEntity:entityDescription];
     if (primaryKey)
     {
-        [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"%@ LIKE %@", primaryKey, [dictionary objectForKey:[primaryKey toUnderscore]]]];        
+        [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"%K LIKE %@", primaryKey, [dictionary objectForKey:[primaryKey toUnderscore]]]];        
     }
     else if ([[[entityDescription attributesByName] allKeys] containsObject:@"remoteObjectID"])
     {
