@@ -10,6 +10,5 @@
 
 - (id)managedObjectWithEntityName:(NSString *)entityName fromDictionary:(NSDictionary *)dictionary withPredicateKey:(NSString *)predicateKey;
 - (id)managedObjectWithEntity:(NSEntityDescription *)entityDescription dictionary:(NSDictionary *)dictionary primaryKey:(NSString *)primaryKey;
-- (id)JSONRepresentationForObject:(NSManagedObject *)managedObject;
 
 @end

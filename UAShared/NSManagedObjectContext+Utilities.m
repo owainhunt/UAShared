@@ -19,6 +19,8 @@
  */
 
 #import "NSManagedObjectContext+Utilities.h"
+#import "NSString+Utilities.h"
+#import "NSArray+Utilities.h"
 
 @implementation NSManagedObjectContext (Utilities)
 
@@ -50,10 +52,11 @@
     NSPropertyListFormat format;
     NSString *plistPath;
     NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    plistPath = [rootPath stringByAppendingPathComponent:@"ReservedWords.plist"];
+    NSString *attributeMappingFilename = [NSString stringWithFormat:@"%@AttributeMap", entityName];
+    plistPath = [rootPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.plist", attributeMappingFilename]];
     if (![[NSFileManager defaultManager] fileExistsAtPath:plistPath]) 
     {
-        plistPath = [[NSBundle mainBundle] pathForResource:@"ReservedWords" ofType:@"plist"];
+        plistPath = [[NSBundle mainBundle] pathForResource:attributeMappingFilename ofType:@"plist"];
     }
     NSData *plistXML = [[NSFileManager defaultManager] contentsAtPath:plistPath];
     NSDictionary *reservedWords = (NSDictionary *)[NSPropertyListSerialization
@@ -146,7 +149,11 @@
     NSPredicate *predicate = [NSPredicate predicateWithValue:YES];
     if (predicateKey && [dictionary objectForKey:[predicateKey toUnderscore]] != nil)
     {
-        predicate = [NSPredicate predicateWithFormat:@"%@ LIKE %@", predicateKey, [dictionary objectForKey:[predicateKey toUnderscore]]];
+        predicate = [NSPredicate predicateWithFormat:@"%K LIKE %@", predicateKey, [dictionary objectForKey:[predicateKey toUnderscore]]];
+    }
+    else if (predicateKey && [[reservedWords allKeys] containsObject:predicateKey])
+    {
+        predicate = [NSPredicate predicateWithFormat:@"%Kt LIKE %@", predicateKey, [dictionary objectForKey:[reservedWords objectForKey:predicateKey]]];
     }
     else if ([[[entityDescription attributesByName] allKeys] containsObject:@"remoteObjectID"])
     {
@@ -202,95 +209,5 @@
     return [self countForFetchRequest:fetchRequest error:nil] ? [[self executeFetchRequest:fetchRequest error:nil] firstObject] : nil;
 }
 
-
-/**
- 
- Returns a JSON representation of a managed object, based on the rules set forth in the class discussion.
- 
- @returns A JSON representation of the given managed object 
- @param managedObject A managed object.
- 
- */
-
-- (id)JSONRepresentationForObject:(NSManagedObject *)managedObject
-{
-    NSMutableDictionary *managedObjectAsDictionary = [NSMutableDictionary new];
-    
-    NSDictionary *reservedWords = [NSDictionary dictionaryWithObjectsAndKeys:
-                                   @"id",           @"remoteObjectID", 
-                                   @"description",  @"remoteObjectDescription",
-                                   nil];
-
-    
-    NSMutableDictionary *(^attributesForManagedObject)(id, NSEntityDescription *);
-    attributesForManagedObject = ^(id obj, NSEntityDescription *entity)
-    {
-        NSMutableDictionary *dictionary = [NSMutableDictionary new];
-        NSArray *attributeNames = [[entity attributesByName] allKeys];
-        
-        for (NSString *attributeName in attributeNames)
-        {
-            NSAttributeDescription *attributeDescription = [[entity attributesByName] objectForKey:attributeName];
-            NSString *attributeNameAsDictionaryKey;
-            
-            if ([[reservedWords allKeys] containsObject:attributeName])
-            {
-                attributeNameAsDictionaryKey = [reservedWords objectForKey:attributeName];
-            }
-            else 
-            {
-                attributeNameAsDictionaryKey = [attributeName toUnderscore];
-            }
-            
-            switch ([attributeDescription attributeType]) 
-            {
-                case NSDateAttributeType:
-                    [dictionary setValue:[[managedObject valueForKey:attributeName] ISO8601StringFromDate] forKey:attributeNameAsDictionaryKey];
-                    break;
-                    
-                default:
-                    [dictionary setValue:[managedObject valueForKey:attributeName] forKey:attributeNameAsDictionaryKey];
-                    break;
-            }
-            
-        }
-        
-        return dictionary;
-    };   
-    
-    managedObjectAsDictionary = attributesForManagedObject(managedObject, [managedObject entity]);
-    
-    for (NSString *relationshipName in [[managedObject entity] relationshipsByName])
-    {
-        NSString *relationshipNameAsDictionaryKey;
-        
-        if ([[reservedWords allKeys] containsObject:relationshipName])
-        {
-            relationshipNameAsDictionaryKey = [reservedWords objectForKey:relationshipName];
-        }
-        else 
-        {
-            relationshipNameAsDictionaryKey = [relationshipName toUnderscore];
-        }
-
-        NSRelationshipDescription *relationship = [[[managedObject entity] relationshipsByName] objectForKey:relationshipName];
-        if ([relationship isToMany])
-        {
-            NSMutableArray *relationshipObjects = [NSMutableArray array];
-            for (id obj in [managedObject valueForKey:relationshipName])
-            {
-                [relationshipObjects addObject:attributesForManagedObject(obj, [obj entity])];
-            }
-            
-            [managedObjectAsDictionary setValue:relationshipObjects forKey:relationshipNameAsDictionaryKey];
-        }
-        else
-        {
-            [managedObjectAsDictionary setValue:attributesForManagedObject([managedObject valueForKey:relationshipName], [relationship destinationEntity]) forKey:relationshipNameAsDictionaryKey];
-        }
-    }
-    
-    return [NSJSONSerialization dataWithJSONObject:managedObjectAsDictionary options:NSJSONWritingPrettyPrinted error:nil];
-}
 
 @end
