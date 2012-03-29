@@ -10,4 +10,6 @@
 
 @interface NSManagedObject (JSON)
 
+- (id)JSONRepresentation;
+
 @end
