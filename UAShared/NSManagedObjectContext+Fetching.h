@@ -6,8 +6,9 @@
 //  Copyright (c) 2012 Owain R Hunt. All rights reserved.
 //
 
-#import <CoreData/CoreData.h>
-
 @interface NSManagedObjectContext (Fetching)
+
+- (id)allEntities:(NSString *)entityName withPredicate:(NSPredicate *)predicate;
+- (id)allEntities:(NSString *)entityName;
 
 @end
