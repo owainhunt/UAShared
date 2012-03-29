@@ -67,6 +67,7 @@
        
     NSDictionary *primaryKeys = [NSDictionary dictionaryWithObjectsAndKeys:
                                  @"name", @"IHLabel", 
+                                 @"login", @"IHRepository",
                                  nil];
     
     id (^updateManagedObjectWithDictionary)(id, NSDictionary *);
@@ -133,7 +134,13 @@
                 }
                 else
                 {
-                    id managedObjectForRelationship = [NSClassFromString([[relationshipDescription destinationEntity] name]) performSelector:@selector(insertInManagedObjectContext:) withObject:self];
+                    id managedObjectForRelationship = [self managedObjectWithEntity:[relationshipDescription destinationEntity] dictionary:dictionary primaryKey:[primaryKeys objectForKey:[[relationshipDescription destinationEntity] name]]];
+                    
+                    if (!managedObjectForRelationship)
+                    {
+                        managedObjectForRelationship = [NSClassFromString([[relationshipDescription destinationEntity] name]) performSelector:@selector(insertInManagedObjectContext:) withObject:self];
+                    }
+                    
                     updateManagedObjectWithDictionary(managedObjectForRelationship, [dictionary objectForKey:relationshipName]);
                     
                     [managedObject setValue:managedObjectForRelationship forKey:relationshipName];   
