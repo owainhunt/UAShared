@@ -14,7 +14,7 @@
 {
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
     [df setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss'Z'"];     
-    return [df stringFromDate:self]
+    return [df stringFromDate:self];
 }
 
 @end
