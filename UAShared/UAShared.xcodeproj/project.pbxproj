@@ -30,18 +30,26 @@
 		CC4A3822149522D9004B7653 /* NSString+Utilities.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Utilities.h"; sourceTree = "<group>"; };
 		CC4A3823149522D9004B7653 /* NSString+Utilities.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+Utilities.m"; sourceTree = "<group>"; };
 		CC4A3824149522D9004B7653 /* UAShared_Prefix.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UAShared_Prefix.h; sourceTree = "<group>"; };
+		CC56385B14D749FF007AF0BC /* NSManagedObjectContext+Fetching.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObjectContext+Fetching.h"; sourceTree = "<group>"; };
+		CC56385C14D749FF007AF0BC /* NSManagedObjectContext+Fetching.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObjectContext+Fetching.m"; sourceTree = "<group>"; };
 		CCA1186A14900634000B62A0 /* NSArray+Utilities.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+Utilities.h"; sourceTree = "<group>"; };
 		CCA1186B14900634000B62A0 /* NSArray+Utilities.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Utilities.m"; sourceTree = "<group>"; };
 		CCBE1B5C14BF8E1100C538FE /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
 		CCBE1B5D14BF8E1100C538FE /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
 		CCBE1B6B14C0CF0000C538FE /* NSManagedObject+URI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+URI.h"; sourceTree = "<group>"; };
 		CCBE1B6C14C0CF0000C538FE /* NSManagedObject+URI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+URI.m"; sourceTree = "<group>"; };
+		CCD455DD14DDE52D0053D2DD /* NSManagedObject+JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+JSON.h"; sourceTree = "<group>"; };
+		CCD455DE14DDE52D0053D2DD /* NSManagedObject+JSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+JSON.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
 		CCC4516614807A4F00F370E8 = {
 			isa = PBXGroup;
 			children = (
+				CCD455DD14DDE52D0053D2DD /* NSManagedObject+JSON.h */,
+				CCD455DE14DDE52D0053D2DD /* NSManagedObject+JSON.m */,
+				CC56385B14D749FF007AF0BC /* NSManagedObjectContext+Fetching.h */,
+				CC56385C14D749FF007AF0BC /* NSManagedObjectContext+Fetching.m */,
 				CCBE1B6B14C0CF0000C538FE /* NSManagedObject+URI.h */,
 				CCBE1B6C14C0CF0000C538FE /* NSManagedObject+URI.m */,
 				CCBE1B5C14BF8E1100C538FE /* NSData+Base64.h */,

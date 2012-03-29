@@ -7,6 +7,7 @@
 //
 
 #import "NSManagedObject+URI.h"
+#import "NSString+Utilities.h"
 
 @implementation NSManagedObject (URI)
 
