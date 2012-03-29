@@ -10,4 +10,44 @@
 
 @implementation NSAttributeDescription (ColumnTypes)
 
+- (NSString *)attributeTypeAsRailsColumnType
+{
+    switch ([self attributeType])
+    {
+        case NSInteger16AttributeType:
+        case NSInteger32AttributeType:
+        case NSInteger64AttributeType:
+            return @"integer";
+            break;
+            
+        case NSDecimalAttributeType:
+            return @"decimal";
+            break;
+            
+        case NSFloatAttributeType:
+            return @"float";
+            break;
+            
+        case NSStringAttributeType:
+            return @"string";
+            break;
+            
+        case NSBooleanAttributeType:
+            return @"boolean";
+            break;
+            
+        case NSDateAttributeType:
+            return @"datetime";
+            break;
+            
+        case NSBinaryDataAttributeType:
+            return @"binary";
+            break;
+            
+        default:
+            return nil;
+            break;
+    }
+}
+
 @end

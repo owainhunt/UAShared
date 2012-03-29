@@ -10,4 +10,6 @@
 
 @interface NSAttributeDescription (ColumnTypes)
 
+- (NSString *)attributeTypeAsRailsColumnType;
+
 @end
