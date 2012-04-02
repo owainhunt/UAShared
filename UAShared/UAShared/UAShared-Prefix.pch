@@ -4,4 +4,32 @@
 
 #ifdef __OBJC__
     #import <Cocoa/Cocoa.h>
+    #import <objc/runtime.h>
+    #import "NSObject+Utilities.h"
+    #import "NSString+Utilities.h"
+    #import "NSManagedObjectContext+Utilities.h"
+    #import "NSManagedObjectContext+Fetching.h"
+    #import "NSDate+Utilities.h"
+    #import "NSManagedObject+URI.h"
+    #import "NSManagedObject+JSON.h"
+    #import "NSAttributeDescription+ColumnTypes.h"
+    #import "NSEntityDescription+AttributeMapping.h"
+
+    #ifdef DEBUG
+    #    define UALog(fmt, ...) NSLog(@"%s:%d (%s): " fmt, __FILE__, __LINE__, __func__, ## __VA_ARGS__)
+    #else
+    #    define UALog(...) /* */
+    #endif
+
+    // https://github.com/Machx/Zangetsu/blob/master/Source/CWMacros.h
+
+    #define UAIBOutletAssert(_x_) \
+    do { \
+    if(_x_ == nil) { \
+    UALog(@"IBOutlet Assertion: %s is nil and appears to not be hooked up!",#_x_); \
+    } \
+    } while(0);
+
+    #define unless(x) if(!x)
+    #define until(x) while(!x)
 #endif
