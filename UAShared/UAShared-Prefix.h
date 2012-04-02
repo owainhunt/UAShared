@@ -15,6 +15,7 @@
 #import "NSManagedObject+URI.h"
 #import "NSManagedObject+JSON.h"
 #import "NSAttributeDescription+ColumnTypes.h"
+#import "NSEntityDescription+AttributeMapping.h"
 
 #ifdef DEBUG
 #    define UALog(fmt, ...) NSLog(@"%s:%d (%s): " fmt, __FILE__, __LINE__, __func__, ## __VA_ARGS__)

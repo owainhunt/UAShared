@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'UAShared' target in the 'UAShared' project
+//
+
+#ifdef __OBJC__
+    #import <Cocoa/Cocoa.h>
+#endif

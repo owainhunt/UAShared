@@ -48,22 +48,7 @@
 
     NSEntityDescription *entityDescription = [NSEntityDescription entityForName:entityName inManagedObjectContext:self];
     
-    NSString *errorDesc = nil;
-    NSPropertyListFormat format;
-    NSString *plistPath;
-    NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *attributeMappingFilename = [NSString stringWithFormat:@"%@AttributeMap", entityName];
-    plistPath = [rootPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.plist", attributeMappingFilename]];
-    if (![[NSFileManager defaultManager] fileExistsAtPath:plistPath]) 
-    {
-        plistPath = [[NSBundle mainBundle] pathForResource:attributeMappingFilename ofType:@"plist"];
-    }
-    NSData *plistXML = [[NSFileManager defaultManager] contentsAtPath:plistPath];
-    NSDictionary *reservedWords = (NSDictionary *)[NSPropertyListSerialization
-                                          propertyListFromData:plistXML
-                                          mutabilityOption:NSPropertyListMutableContainersAndLeaves
-                                          format:&format
-                                          errorDescription:&errorDesc];
+    NSDictionary *reservedWords = [entityDescription attributeMap];
        
     NSDictionary *primaryKeys = [NSDictionary dictionaryWithObjectsAndKeys:
                                  @"name", @"IHLabel", 
