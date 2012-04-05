@@ -164,6 +164,7 @@
     {
         NSLog(@"NSManagedObject retrieved from data store: %@", entityName);
         managedObject = [[self executeFetchRequest:request error:nil] objectAtIndex:0];
+        updateManagedObjectWithDictionary(managedObject, dictionary);   
     }
     
     updateManagedObjectRelationships(managedObject, entityDescription);
