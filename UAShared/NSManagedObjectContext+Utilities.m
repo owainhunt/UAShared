@@ -173,6 +173,17 @@
 }
 
 
+- (id)managedObjectWithEntityName:(NSString *)entityName fromDictionary:(NSDictionary *)dictionary withPredicateKey:(NSString *)predicateKey parentObject:(NSManagedObject *)parentObject
+{
+    NSEntityDescription *entityDescription = [NSEntityDescription entityForName:entityName inManagedObjectContext:self];
+    NSString *relationshipForParent = [[[entityDescription relationshipsWithDestinationEntity:(NSEntityDescription *)[parentObject entity]] firstObject] name];
+    
+    id managedObject = [self managedObjectWithEntityName:entityName fromDictionary:dictionary withPredicateKey:predicateKey];
+    [managedObject setValue:parentObject forKey:relationshipForParent];
+    return managedObject;
+}
+
+
 /**
  
  Returns a managed object, if one exists, based on the given `entityDescription`, `dictionary` and `primaryKey`.
