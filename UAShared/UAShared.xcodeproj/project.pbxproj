@@ -222,7 +222,7 @@
 		CCC4516814807A4F00F370E8 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0430;
 				ORGANIZATIONNAME = "Owain R Hunt";
 			};
 			buildConfigurationList = CCC4516B14807A4F00F370E8 /* Build configuration list for PBXProject "UAShared" */;
@@ -420,6 +420,7 @@
 				CCCAF3AB152A4F8300E22571 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
