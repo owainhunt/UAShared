@@ -35,8 +35,3 @@ UALog(@"IBOutlet Assertion: %s is nil and appears to not be hooked up!",#_x_); \
 
 #define unless(x) if(!x)
 #define until(x) while(!x)
-
-
-@interface UAShared : NSObject
-
-@end
