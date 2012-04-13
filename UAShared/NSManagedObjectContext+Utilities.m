@@ -22,7 +22,117 @@
 #import "NSString+Utilities.h"
 #import "NSArray+Utilities.h"
 
+@interface NSManagedObjectContext (Private)
+
+- (id)updateManagedObject:(NSManagedObject *)obj withDictionary:(NSDictionary *)dictionary;
+- (id)updateRelationshipsOnManagedObject:(NSManagedObject *)obj withDictionary:(NSDictionary *)dictionary;
+
+@end
+
 @implementation NSManagedObjectContext (Utilities)
+
+- (id)updateManagedObject:(NSManagedObject *)obj withDictionary:(NSDictionary *)dictionary
+{
+    NSDictionary *attributeMap = [[NSEntityDescription entityForName:NSStringFromClass([obj class]) inManagedObjectContext:self] attributeMap];
+    NSArray *attributeNames = [[[NSEntityDescription entityForName:NSStringFromClass([obj class]) inManagedObjectContext:self] attributesByName] allKeys];
+    for (NSString *attributeName in attributeNames)
+    {
+        if ([[attributeMap allKeys] containsObject:attributeName])
+        {
+            [obj setValue:[dictionary objectForKey:[attributeMap objectForKey:attributeName]] forKey:attributeName];
+        }
+        else if ([[dictionary allKeys] containsObject:[attributeName toUnderscore]])
+        {
+            if (![[dictionary objectForKey:[attributeName toUnderscore]] isEqual:[NSNull null]])
+            {
+                if ([[[[[NSEntityDescription entityForName:NSStringFromClass([obj class]) inManagedObjectContext:self] attributesByName] objectForKey:attributeName] attributeValueClassName] isEqualToString:NSStringFromClass([NSDate class])])
+                {
+                    [obj setValue:[[dictionary objectForKey:[attributeName toUnderscore]] dateFromISO8601String] forKey:attributeName];
+                }
+                else
+                {
+                    [obj setValue:[dictionary objectForKey:[attributeName toUnderscore]] forKey:attributeName];
+                }
+            }
+        }
+    }
+    return obj;
+}
+
+
+- (id)updateRelationshipsOnManagedObject:(NSManagedObject *)obj withDictionary:(NSDictionary *)dictionary
+{
+    NSEntityDescription *entityDescription = [obj entity];
+    for (NSString *relationshipName in [[entityDescription relationshipsByName] allKeys]) 
+    {
+        NSLog(@"%@", relationshipName);
+        if ([[dictionary allKeys] containsObject:[relationshipName toUnderscore]]) 
+        {
+            NSRelationshipDescription *relationshipDescription = [[entityDescription relationshipsByName] objectForKey:relationshipName];
+            
+            if ([relationshipDescription isToMany])
+            {
+                for (NSDictionary *objDictionary in [dictionary objectForKey:relationshipName])
+                {
+                    id managedObjectForRelationship = [self managedObjectWithEntity:[relationshipDescription destinationEntity] dictionary:dictionary primaryKey:nil];
+                    
+                    if (!managedObjectForRelationship)
+                    {
+                        managedObjectForRelationship = [NSClassFromString([[relationshipDescription destinationEntity] name]) performSelector:@selector(insertInManagedObjectContext:) withObject:self];
+                    }
+                    
+                    id updatedObject = [self updateManagedObject:managedObjectForRelationship withDictionary:objDictionary];
+                    
+                    NSMutableSet *relationshipSet = [[obj valueForKey:relationshipName] mutableCopy];
+                    if (relationshipSet != nil)
+                    {
+                        [relationshipSet addObject:updatedObject];
+                    }
+                    else 
+                    {
+                        relationshipSet = [NSMutableSet setWithObject:updatedObject];
+                    }
+                    [obj setValue:relationshipSet forKey:relationshipName];
+                }
+            }
+            else
+            {
+                //                    id managedObjectForRelationship = [self managedObjectWithEntity:[relationshipDescription destinationEntity] dictionary:dictionary primaryKey:[primaryKeys objectForKey:[[relationshipDescription destinationEntity] name]]];
+                id managedObjectForRelationship = [self managedObjectWithEntity:[relationshipDescription destinationEntity] dictionary:[dictionary objectForKey:relationshipName] primaryKey:nil];
+                
+                if (!managedObjectForRelationship)
+                {
+                    managedObjectForRelationship = [NSClassFromString([[relationshipDescription destinationEntity] name]) performSelector:@selector(insertInManagedObjectContext:) withObject:self];
+                }
+                
+                id updatedObject = [self updateManagedObject:managedObjectForRelationship withDictionary:[dictionary objectForKey:relationshipName]];
+                
+                [obj setValue:updatedObject forKey:relationshipName];   
+            }
+        }
+    }
+    return obj;
+}
+
+
+- (id)updateSecondLevelRelationshipsOnManagedObject:(NSManagedObject *)obj withDictionary:(NSDictionary *)dictionary
+{
+    NSEntityDescription *entityDescription = [obj entity];
+    for (NSString *relationshipName in [[entityDescription relationshipsByName] allKeys]) 
+    {
+        if ([[dictionary allKeys] containsObject:[relationshipName toUnderscore]])
+        {
+            NSString *dictionaryKey = [relationshipName toUnderscore];
+            if ([[[entityDescription attributeMap] allKeys] containsObject:relationshipName])
+            {
+                dictionaryKey = [[entityDescription attributeMap] objectForKey:relationshipName];
+            }
+            [self updateRelationshipsOnManagedObject:[obj valueForKey:relationshipName] withDictionary:[dictionary objectForKey:dictionaryKey]];
+        }
+    }
+    
+    return obj;
+}
 
 /**
  
@@ -47,94 +157,12 @@
     id managedObject;
 
     NSEntityDescription *entityDescription = [NSEntityDescription entityForName:entityName inManagedObjectContext:self];
-    
-    NSDictionary *reservedWords = [entityDescription attributeMap];
-       
-    NSDictionary *primaryKeys = [NSDictionary dictionaryWithObjectsAndKeys:
-                                 @"name", @"IHLabel", 
-                                 @"login", @"IHRepository",
-                                 nil];
-    
-    id (^updateManagedObjectWithDictionary)(id, NSDictionary *);
-    updateManagedObjectWithDictionary = ^(id theObject, NSDictionary *inputDictionary)
-    {
-        NSArray *attributeNames = [[[NSEntityDescription entityForName:NSStringFromClass([theObject class]) inManagedObjectContext:self] attributesByName] allKeys];
-        for (NSString *attributeName in attributeNames)
-        {
-            if ([[reservedWords allKeys] containsObject:attributeName])
-            {
-                [theObject setValue:[inputDictionary objectForKey:[reservedWords objectForKey:attributeName]] forKey:attributeName];
-            }
-            else if ([[inputDictionary allKeys] containsObject:[attributeName toUnderscore]])
-            {
-                if (![[inputDictionary objectForKey:[attributeName toUnderscore]] isEqual:[NSNull null]])
-                {
-                    if ([[[[[NSEntityDescription entityForName:NSStringFromClass([theObject class]) inManagedObjectContext:self] attributesByName] objectForKey:attributeName] attributeValueClassName] isEqualToString:NSStringFromClass([NSDate class])])
-                    {
-                        [theObject setValue:[[inputDictionary objectForKey:[attributeName toUnderscore]] dateFromISO8601String] forKey:attributeName];
-                    }
-                    else
-                    {
-                        [theObject setValue:[inputDictionary objectForKey:[attributeName toUnderscore]] forKey:attributeName];
-                    }
-                }
-            }
-        }
-        return theObject;
-    };
-    
-    id (^updateManagedObjectRelationships)(NSManagedObject *, NSEntityDescription *);
-    updateManagedObjectRelationships = ^(NSManagedObject *managedObject, NSEntityDescription *entityDescription)
-    {
-        for (NSString *relationshipName in [[entityDescription relationshipsByName] allKeys]) 
-        {
-            if ([[dictionary allKeys] containsObject:[relationshipName toUnderscore]]) 
-            {
-                NSRelationshipDescription *relationshipDescription = [[entityDescription relationshipsByName] objectForKey:relationshipName];
-                
-                if ([relationshipDescription isToMany])
-                {
-                    for (NSDictionary *objDictionary in [dictionary objectForKey:relationshipName])
-                    {
-                        id managedObjectForRelationship = [self managedObjectWithEntity:[relationshipDescription destinationEntity] dictionary:dictionary primaryKey:[primaryKeys objectForKey:[[relationshipDescription destinationEntity] name]]];
-                        
-                        if (!managedObjectForRelationship)
-                        {
-                            managedObjectForRelationship = [NSClassFromString([[relationshipDescription destinationEntity] name]) performSelector:@selector(insertInManagedObjectContext:) withObject:self];
-                        }
-                        
-                        updateManagedObjectWithDictionary(managedObjectForRelationship, objDictionary);
-                        
-                        NSMutableSet *relationshipSet = [[managedObject valueForKey:relationshipName] mutableCopy];
-                        if (relationshipSet != nil)
-                        {
-                            [relationshipSet addObject:managedObjectForRelationship];
-                        }
-                        else 
-                        {
-                            relationshipSet = [NSMutableSet setWithObject:managedObjectForRelationship];
-                        }
-                        [managedObject setValue:relationshipSet forKey:relationshipName];
-                    }
-                }
-                else
-                {
-                    id managedObjectForRelationship = [self managedObjectWithEntity:[relationshipDescription destinationEntity] dictionary:dictionary primaryKey:[primaryKeys objectForKey:[[relationshipDescription destinationEntity] name]]];
-                    
-                    if (!managedObjectForRelationship)
-                    {
-                        managedObjectForRelationship = [NSClassFromString([[relationshipDescription destinationEntity] name]) performSelector:@selector(insertInManagedObjectContext:) withObject:self];
-                    }
-                    
-                    updateManagedObjectWithDictionary(managedObjectForRelationship, [dictionary objectForKey:relationshipName]);
-                    
-                    [managedObject setValue:managedObjectForRelationship forKey:relationshipName];   
-                }
-            }
-        }
-        return managedObject;
-    };
-
+    NSDictionary *attributeMap = [entityDescription attributeMap];
+//    NSDictionary *primaryKeys = [NSDictionary dictionaryWithObjectsAndKeys:
+//                                 @"name", @"IHLabel", 
+//                                 @"login", @"IHRepository",
+//                                 @"owner.login", @"IHIssue",
+//                                 nil];
     
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     [request setEntity:entityDescription];
@@ -143,9 +171,9 @@
     {
         predicate = [NSPredicate predicateWithFormat:@"%K LIKE %@", predicateKey, [dictionary objectForKey:[predicateKey toUnderscore]]];
     }
-    else if (predicateKey && [[reservedWords allKeys] containsObject:predicateKey])
+    else if (predicateKey && [[attributeMap allKeys] containsObject:predicateKey])
     {
-        predicate = [NSPredicate predicateWithFormat:@"%Kt LIKE %@", predicateKey, [dictionary objectForKey:[reservedWords objectForKey:predicateKey]]];
+        predicate = [NSPredicate predicateWithFormat:@"%K LIKE %@", predicateKey, [dictionary objectForKey:[attributeMap objectForKey:predicateKey]]];
     }
     else if ([[[entityDescription attributesByName] allKeys] containsObject:@"remoteObjectID"])
     {
@@ -156,19 +184,19 @@
     
     if ([self countForFetchRequest:request error:nil] == 0)
     {        
-        NSLog(@"Creating new NSManagedObject: %@", entityName);
+        NSLog(@"Creating NSManagedObject: %@", entityName);
         managedObject = [NSClassFromString(entityName) performSelector:@selector(insertInManagedObjectContext:) withObject:self];
-        updateManagedObjectWithDictionary(managedObject, dictionary);   
     }
     else
     {
-        NSLog(@"NSManagedObject retrieved from data store: %@", entityName);
+        NSLog(@"Retrieving NSManagedObject: %@", entityName);
         managedObject = [[self executeFetchRequest:request error:nil] objectAtIndex:0];
-        updateManagedObjectWithDictionary(managedObject, dictionary);   
     }
-    
-    updateManagedObjectRelationships(managedObject, entityDescription);
-    
+
+    [self updateManagedObject:managedObject withDictionary:dictionary];
+    [self updateRelationshipsOnManagedObject:managedObject withDictionary:dictionary];
+    [self updateSecondLevelRelationshipsOnManagedObject:managedObject withDictionary:dictionary];
+      
     return managedObject;
 }
 
@@ -210,6 +238,7 @@
         [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"remoteObjectID == %@", [dictionary objectForKey:@"id"]]];
     }
 
+    NSLog(@"Find %@: %@: %lu", [entityDescription name], [[fetchRequest predicate] predicateFormat], [self countForFetchRequest:fetchRequest error:nil]);
     return [self countForFetchRequest:fetchRequest error:nil] ? [[self executeFetchRequest:fetchRequest error:nil] firstObject] : nil;
 }
 
