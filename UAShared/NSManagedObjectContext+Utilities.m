@@ -65,7 +65,6 @@
     NSEntityDescription *entityDescription = [obj entity];
     for (NSString *relationshipName in [[entityDescription relationshipsByName] allKeys]) 
     {
-        NSLog(@"%@", relationshipName);
         if ([[dictionary allKeys] containsObject:[relationshipName toUnderscore]]) 
         {
             NSRelationshipDescription *relationshipDescription = [[entityDescription relationshipsByName] objectForKey:relationshipName];
@@ -238,7 +237,7 @@
         [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"remoteObjectID == %@", [dictionary objectForKey:@"id"]]];
     }
 
-    NSLog(@"Find %@: %@: %lu", [entityDescription name], [[fetchRequest predicate] predicateFormat], [self countForFetchRequest:fetchRequest error:nil]);
+//    NSLog(@"Find %@: %@: %lu", [entityDescription name], [[fetchRequest predicate] predicateFormat], [self countForFetchRequest:fetchRequest error:nil]);
     return [self countForFetchRequest:fetchRequest error:nil] ? [[self executeFetchRequest:fetchRequest error:nil] firstObject] : nil;
 }
 
