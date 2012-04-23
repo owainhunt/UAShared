@@ -12,6 +12,7 @@
 
 - (id)firstObject;
 - (NSArray *)sortedWithKey:(NSString *)theKey ascending:(BOOL)ascending;
+- (NSArray *)uniqueObjects;
 
 
 @end

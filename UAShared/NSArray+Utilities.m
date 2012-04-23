@@ -26,4 +26,10 @@
 }
 
 
+- (NSArray *)uniqueObjects
+{
+    return [[NSSet setWithArray:self] allObjects];
+}
+
+
 @end
