@@ -43,6 +43,9 @@
 		CC52FF3515378196005A767A /* NSObject+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = CC52FF1E15378196005A767A /* NSObject+Utilities.m */; };
 		CC52FF3615378196005A767A /* NSString+Utilities.h in Headers */ = {isa = PBXBuildFile; fileRef = CC52FF1F15378196005A767A /* NSString+Utilities.h */; };
 		CC52FF3715378196005A767A /* NSString+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = CC52FF2015378196005A767A /* NSString+Utilities.m */; };
+		CC5878131546D7FD00B6EDC5 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC5878121546D7FD00B6EDC5 /* QuartzCore.framework */; };
+		CC5878391546DBF600B6EDC5 /* NSView+Utilities.h in Headers */ = {isa = PBXBuildFile; fileRef = CC5878371546DBF600B6EDC5 /* NSView+Utilities.h */; };
+		CC58783A1546DBF600B6EDC5 /* NSView+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = CC5878381546DBF600B6EDC5 /* NSView+Utilities.m */; };
 		CCCAF39B152A4F8300E22571 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCCAF39A152A4F8300E22571 /* Cocoa.framework */; };
 		CCCAF3A5152A4F8300E22571 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CCCAF3A3152A4F8300E22571 /* InfoPlist.strings */; };
 		CCCAF3C3152A4FE100E22571 /* UAShared.h in Headers */ = {isa = PBXBuildFile; fileRef = CCCAF3A7152A4F8300E22571 /* UAShared.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -71,6 +74,9 @@
 		CC52FF1E15378196005A767A /* NSObject+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Utilities.m"; sourceTree = "<group>"; };
 		CC52FF1F15378196005A767A /* NSString+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Utilities.h"; sourceTree = "<group>"; };
 		CC52FF2015378196005A767A /* NSString+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Utilities.m"; sourceTree = "<group>"; };
+		CC5878121546D7FD00B6EDC5 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
+		CC5878371546DBF600B6EDC5 /* NSView+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSView+Utilities.h"; sourceTree = "<group>"; };
+		CC5878381546DBF600B6EDC5 /* NSView+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSView+Utilities.m"; sourceTree = "<group>"; };
 		CCCAF397152A4F8300E22571 /* UAShared.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UAShared.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CCCAF39A152A4F8300E22571 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		CCCAF39D152A4F8300E22571 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -87,6 +93,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CC5878131546D7FD00B6EDC5 /* QuartzCore.framework in Frameworks */,
 				CCCAF39B152A4F8300E22571 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -114,6 +121,7 @@
 		CCCAF399152A4F8300E22571 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CC5878121546D7FD00B6EDC5 /* QuartzCore.framework */,
 				CCCAF39A152A4F8300E22571 /* Cocoa.framework */,
 				CCCAF39C152A4F8300E22571 /* Other Frameworks */,
 			);
@@ -134,6 +142,8 @@
 			isa = PBXGroup;
 			children = (
 				CCCAF3A7152A4F8300E22571 /* UAShared.h */,
+				CC5878371546DBF600B6EDC5 /* NSView+Utilities.h */,
+				CC5878381546DBF600B6EDC5 /* NSView+Utilities.m */,
 				CC52FF0B15378196005A767A /* NSArray+Utilities.h */,
 				CC52FF0C15378196005A767A /* NSArray+Utilities.m */,
 				CC52FF0D15378196005A767A /* NSAttributeDescription+ColumnTypes.h */,
@@ -190,6 +200,7 @@
 				CC52FF3215378196005A767A /* NSManagedObjectContext+Utilities.h in Headers */,
 				CC52FF3415378196005A767A /* NSObject+Utilities.h in Headers */,
 				CC52FF3615378196005A767A /* NSString+Utilities.h in Headers */,
+				CC5878391546DBF600B6EDC5 /* NSView+Utilities.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -220,7 +231,7 @@
 		CCC4516814807A4F00F370E8 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0430;
+				LastUpgradeCheck = 0440;
 				ORGANIZATIONNAME = "Owain R Hunt";
 			};
 			buildConfigurationList = CCC4516B14807A4F00F370E8 /* Build configuration list for PBXProject "UAShared" */;
@@ -235,8 +246,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				CC4A382614952349004B7653 /* Documentation */,
 				CCCAF396152A4F8300E22571 /* UAShared */,
+				CC4A382614952349004B7653 /* Documentation */,
 			);
 		};
 /* End PBXProject section */
@@ -284,6 +295,7 @@
 				CC52FF3315378196005A767A /* NSManagedObjectContext+Utilities.m in Sources */,
 				CC52FF3515378196005A767A /* NSObject+Utilities.m in Sources */,
 				CC52FF3715378196005A767A /* NSString+Utilities.m in Sources */,
+				CC58783A1546DBF600B6EDC5 /* NSView+Utilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -318,19 +330,20 @@
 		CCC4516D14807A4F00F370E8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 			};
 			name = Debug;
 		};
 		CCC4516E14807A4F00F370E8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 			};
 			name = Release;
 		};
 		CCCAF3AA152A4F8300E22571 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COPY_PHASE_STRIP = NO;
@@ -353,6 +366,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/**";
 				INFOPLIST_FILE = "UAShared/UAShared-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
@@ -365,7 +379,6 @@
 		CCCAF3AB152A4F8300E22571 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COPY_PHASE_STRIP = YES;
@@ -382,6 +395,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/**";
 				INFOPLIST_FILE = "UAShared/UAShared-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -4,7 +4,9 @@
 
 #ifdef __OBJC__
     #import <Cocoa/Cocoa.h>
+    #import <QuartzCore/QuartzCore.h>
     #import <objc/runtime.h>
+    #import "NSView+Utilities.h"
     #import "NSObject+Utilities.h"
     #import "NSString+Utilities.h"
     #import "NSManagedObjectContext+Utilities.h"

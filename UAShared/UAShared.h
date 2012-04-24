@@ -7,7 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <QuartzCore/QuartzCore.h>
 #import "NSManagedObjectContext+Fetching.h"
+#import "NSView+Utilities.h"
 #import "NSAttributeDescription+ColumnTypes.h"
 #import "NSManagedObject+JSON.h"
 #import "NSManagedObject+URI.h"
@@ -21,7 +23,7 @@
 #ifdef DEBUG
 #    define UALog(fmt, ...) NSLog(@"%s:%d (%s): " fmt, __FILE__, __LINE__, __func__, ## __VA_ARGS__)
 #else
-#    define UALog(...) /* */
+#    define UALog(...)
 #endif
 
 // https://github.com/Machx/Zangetsu/blob/master/Source/CWMacros.h
