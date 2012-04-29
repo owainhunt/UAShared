@@ -65,7 +65,7 @@
     NSEntityDescription *entityDescription = [obj entity];
     for (NSString *relationshipName in [[entityDescription relationshipsByName] allKeys]) 
     {
-        if ([[dictionary allKeys] containsObject:[relationshipName toUnderscore]]) 
+        if ([[dictionary allKeys] containsObject:[relationshipName toUnderscore]] && (![[dictionary objectForKey:[relationshipName toUnderscore]] isEqual:[NSNull null]]))
         {
             NSRelationshipDescription *relationshipDescription = [[entityDescription relationshipsByName] objectForKey:relationshipName];
             
@@ -226,6 +226,9 @@
 
 - (id)managedObjectWithEntity:(NSEntityDescription *)entityDescription dictionary:(NSDictionary *)dictionary primaryKey:(NSString *)primaryKey
 {
+    if (!dictionary)
+        return nil;
+    
     NSFetchRequest *fetchRequest = [NSFetchRequest new];
     [fetchRequest setEntity:entityDescription];
     if (primaryKey)
