@@ -161,7 +161,13 @@
     NSEntityDescription *entityDescription = [obj entity];
     for (NSString *relationshipName in [[entityDescription relationshipsByName] allKeys]) 
     {
-        if ([[dictionary allKeys] containsObject:[relationshipName toUnderscore]] && (![[dictionary objectForKey:[relationshipName toUnderscore]] isEqual:[NSNull null]]))
+        NSString *dictionaryKey = [relationshipName toUnderscore];
+        if ([[[entityDescription attributeMap] allKeys] containsObject:relationshipName])
+        {
+            dictionaryKey = [[entityDescription attributeMap] objectForKey:relationshipName];
+        }
+        
+        if ([[dictionary allKeys] containsObject:dictionaryKey] && (![[dictionary objectForKey:dictionaryKey] isEqual:[NSNull null]]))
         {
             NSRelationshipDescription *relationshipDescription = [[entityDescription relationshipsByName] objectForKey:relationshipName];
             if ([relationshipDescription isToMany])
@@ -190,7 +196,7 @@
             }
             else
             {
-                id managedObjectForRelationship = [self managedObjectWithEntity:[relationshipDescription destinationEntity] dictionary:[dictionary objectForKey:relationshipName] primaryKey:nil];
+                id managedObjectForRelationship = [self managedObjectWithEntity:[relationshipDescription destinationEntity] dictionary:[dictionary objectForKey:dictionaryKey] primaryKey:nil];
                 if (!managedObjectForRelationship)
                 {
                     managedObjectForRelationship = [NSClassFromString([[relationshipDescription destinationEntity] name]) performSelector:@selector(insertInManagedObjectContext:) withObject:self];
@@ -261,7 +267,7 @@
         [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"name == %@", [dictionary objectForKey:[[entityDescription attributeMap] valueForKey:@"primaryKey"]]]];
     }
 
-    NSLog(@"Find %@: %@: %lu %@", [entityDescription name], [[fetchRequest predicate] predicateFormat], [self countForFetchRequest:fetchRequest error:nil], dictionary);
+//    NSLog(@"Find %@: %@: %lu %@", [entityDescription name], [[fetchRequest predicate] predicateFormat], [self countForFetchRequest:fetchRequest error:nil], dictionary);
     return [self countForFetchRequest:fetchRequest error:nil] ? [[self executeFetchRequest:fetchRequest error:nil] firstObject] : nil;
 }
 
