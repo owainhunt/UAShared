@@ -239,8 +239,12 @@
     {
         [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"remoteObjectID == %@", [dictionary objectForKey:@"id"]]];
     }
+    else if ([[entityDescription attributeMap] valueForKey:@"primaryKey"])
+    {
+        [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"name == %@", [dictionary objectForKey:[[entityDescription attributeMap] valueForKey:@"primaryKey"]]]];
+    }
 
-//    NSLog(@"Find %@: %@: %lu", [entityDescription name], [[fetchRequest predicate] predicateFormat], [self countForFetchRequest:fetchRequest error:nil]);
+    NSLog(@"Find %@: %@: %lu %@", [entityDescription name], [[fetchRequest predicate] predicateFormat], [self countForFetchRequest:fetchRequest error:nil], dictionary);
     return [self countForFetchRequest:fetchRequest error:nil] ? [[self executeFetchRequest:fetchRequest error:nil] firstObject] : nil;
 }
 
