@@ -21,8 +21,8 @@
     }
     
     NSError *fetchError;
-    NSLog(@"Returned %lu objects for entity %@", [self countForFetchRequest:request error:nil], entityName);
-    return [self executeFetchRequest:request error:&fetchError];    
+//    NSLog(@"Returned %lu objects for entity %@", [self countForFetchRequest:request error:nil], entityName);
+    return [self executeFetchRequest:request error:&fetchError];
 }
 
 
