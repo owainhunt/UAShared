@@ -26,10 +26,106 @@
 
 - (id)updateManagedObject:(NSManagedObject *)obj withDictionary:(NSDictionary *)dictionary;
 - (id)updateRelationshipsOnManagedObject:(NSManagedObject *)obj withDictionary:(NSDictionary *)dictionary;
+- (id)updateSecondLevelRelationshipsOnManagedObject:(NSManagedObject *)obj withDictionary:(NSDictionary *)dictionary;
 
 @end
 
 @implementation NSManagedObjectContext (Utilities)
+
+
+
+/**
+ 
+ Returns a managed object, either newly created or retrieved from the data store based on `dictionary` and `entityName`.
+ 
+ This method first sets up an `NSFetchRequest` using `entityName`. The `NSPredicate` for this fetch request uses either `predicateKey`, or the object for the `id` key in `dictionary` if `predicateKey` is not given.
+ 
+ If this fetch request returns an object, it is updated with the values from `dictionary`, including handling any relationship attributes. If no object is returned, a new managed object is created, and given the values from `dictionary`.
+ 
+ Finally, the updated or created managed object is returned.
+ 
+ @returns A managed object, either newly created or retrieved from the data store based on the dictionary and entityName provided.
+ 
+ @param entityName The name of an entity present in the Managed Object Model.
+ @param dictionary An NSDictionary representation of a managed object.
+ @param predicateKey An attribute on the entity given in entityName to be used to determine if the object represented by dictionary is present in the data store. In the absence of this parameter, the key 'id' will be used.
+ 
+ */
+
+- (id)managedObjectWithEntityName:(NSString *)entityName fromDictionary:(NSDictionary *)dictionary withPredicateKey:(NSString *)predicateKey havingRelatedObject:(NSManagedObject *)relatedObject forRelationship:(NSString *)relationshipName
+{
+    NSEntityDescription *entityDescription = [NSEntityDescription entityForName:entityName inManagedObjectContext:self];
+    NSDictionary *attributeMap = [entityDescription attributeMap];    
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    [request setEntity:entityDescription];
+    
+    NSPredicate *predicate = [NSPredicate predicateWithValue:YES];
+    if (predicateKey && [dictionary objectForKey:[predicateKey toUnderscore]] != nil)
+    {
+        predicate = [NSPredicate predicateWithFormat:@"%K LIKE %@", predicateKey, [dictionary objectForKey:[predicateKey toUnderscore]]];
+    }
+    else if (predicateKey && [[attributeMap allKeys] containsObject:predicateKey])
+    {
+        predicate = [NSPredicate predicateWithFormat:@"%K LIKE %@", predicateKey, [dictionary objectForKey:[attributeMap objectForKey:predicateKey]]];
+    }
+    else if ([[[entityDescription attributesByName] allKeys] containsObject:@"remoteObjectID"])
+    {
+        predicate = [NSPredicate predicateWithFormat:@"remoteObjectID == %@", [dictionary objectForKey:@"id"]];
+    }
+    
+    if (relatedObject)
+    {
+        NSPredicate *relationshipPredicate = [NSPredicate predicateWithFormat:@"%K == %@", relationshipName, relatedObject];
+        NSPredicate *compoundPredicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[predicate, relationshipPredicate]];
+        [request setPredicate:compoundPredicate];
+    }
+    else
+    {
+        [request setPredicate:predicate];
+    }
+    
+    id managedObject;
+    if ([self countForFetchRequest:request error:nil] == 0)
+    {        
+        NSLog(@"Creating %@", entityName);
+        managedObject = [NSClassFromString(entityName) performSelector:@selector(insertInManagedObjectContext:) withObject:self];
+        if (relatedObject)
+        {
+            [managedObject setValue:relatedObject forKey:relationshipName];
+        }
+    }
+    else
+    {
+        NSLog(@"Retrieving %@", entityName);
+        managedObject = [[self executeFetchRequest:request error:nil] objectAtIndex:0];
+    }
+    
+    [self updateManagedObject:managedObject withDictionary:dictionary];
+    [self updateRelationshipsOnManagedObject:managedObject withDictionary:dictionary];
+    [self updateSecondLevelRelationshipsOnManagedObject:managedObject withDictionary:dictionary];
+    
+    return managedObject;
+
+}
+
+
+- (id)managedObjectWithEntityName:(NSString *)entityName fromDictionary:(NSDictionary *)dictionary withPredicateKey:(NSString *)predicateKey
+{
+    return [self managedObjectWithEntityName:entityName fromDictionary:dictionary withPredicateKey:predicateKey havingRelatedObject:nil forRelationship:nil];
+}
+
+
+- (id)managedObjectWithEntityName:(NSString *)entityName fromDictionary:(NSDictionary *)dictionary withPredicateKey:(NSString *)predicateKey parentObject:(NSManagedObject *)parentObject
+{
+    NSEntityDescription *entityDescription = [NSEntityDescription entityForName:entityName inManagedObjectContext:self];
+    NSString *relationshipForParent = [[[entityDescription relationshipsWithDestinationEntity:(NSEntityDescription *)[parentObject entity]] firstObject] name];
+    
+    id managedObject = [self managedObjectWithEntityName:entityName fromDictionary:dictionary withPredicateKey:predicateKey];
+    [managedObject setValue:parentObject forKey:relationshipForParent];
+
+    return managedObject;
+}
+
 
 - (id)updateManagedObject:(NSManagedObject *)obj withDictionary:(NSDictionary *)dictionary
 {
@@ -68,7 +164,6 @@
         if ([[dictionary allKeys] containsObject:[relationshipName toUnderscore]] && (![[dictionary objectForKey:[relationshipName toUnderscore]] isEqual:[NSNull null]]))
         {
             NSRelationshipDescription *relationshipDescription = [[entityDescription relationshipsByName] objectForKey:relationshipName];
-            
             if ([relationshipDescription isToMany])
             {
                 for (NSDictionary *objDictionary in [dictionary objectForKey:relationshipName])
@@ -95,16 +190,13 @@
             }
             else
             {
-                //                    id managedObjectForRelationship = [self managedObjectWithEntity:[relationshipDescription destinationEntity] dictionary:dictionary primaryKey:[primaryKeys objectForKey:[[relationshipDescription destinationEntity] name]]];
                 id managedObjectForRelationship = [self managedObjectWithEntity:[relationshipDescription destinationEntity] dictionary:[dictionary objectForKey:relationshipName] primaryKey:nil];
-                
                 if (!managedObjectForRelationship)
                 {
                     managedObjectForRelationship = [NSClassFromString([[relationshipDescription destinationEntity] name]) performSelector:@selector(insertInManagedObjectContext:) withObject:self];
                 }
                 
-                id updatedObject = [self updateManagedObject:managedObjectForRelationship withDictionary:[dictionary objectForKey:relationshipName]];
-                
+                id updatedObject = [self updateManagedObject:managedObjectForRelationship withDictionary:[dictionary objectForKey:relationshipName]];                
                 [obj setValue:updatedObject forKey:relationshipName];   
             }
         }
@@ -125,88 +217,14 @@
             {
                 dictionaryKey = [[entityDescription attributeMap] objectForKey:relationshipName];
             }
-            [self updateRelationshipsOnManagedObject:[obj valueForKey:relationshipName] withDictionary:[dictionary objectForKey:dictionaryKey]];
+            if ([[obj valueForKey:relationshipName] isKindOfClass:[NSManagedObject class]])
+            {
+                [self updateRelationshipsOnManagedObject:[obj valueForKey:relationshipName] withDictionary:[dictionary objectForKey:dictionaryKey]];
+            }
         }
     }
     
     return obj;
-}
-
-/**
- 
- Returns a managed object, either newly created or retrieved from the data store based on `dictionary` and `entityName`.
- 
- This method first sets up an `NSFetchRequest` using `entityName`. The `NSPredicate` for this fetch request uses either `predicateKey`, or the object for the `id` key in `dictionary` if `predicateKey` is not given.
- 
- If this fetch request returns an object, it is updated with the values from `dictionary`, including handling any relationship attributes. If no object is returned, a new managed object is created, and given the values from `dictionary`.
- 
- Finally, the updated or created managed object is returned.
- 
- @returns A managed object, either newly created or retrieved from the data store based on the dictionary and entityName provided.
- 
- @param entityName The name of an entity present in the Managed Object Model.
- @param dictionary An NSDictionary representation of a managed object.
- @param predicateKey An attribute on the entity given in entityName to be used to determine if the object represented by dictionary is present in the data store. In the absence of this parameter, the key 'id' will be used.
- 
- */
-
-- (id)managedObjectWithEntityName:(NSString *)entityName fromDictionary:(NSDictionary *)dictionary withPredicateKey:(NSString *)predicateKey
-{
-    id managedObject;
-
-    NSEntityDescription *entityDescription = [NSEntityDescription entityForName:entityName inManagedObjectContext:self];
-    NSDictionary *attributeMap = [entityDescription attributeMap];
-//    NSDictionary *primaryKeys = [NSDictionary dictionaryWithObjectsAndKeys:
-//                                 @"name", @"IHLabel", 
-//                                 @"login", @"IHRepository",
-//                                 @"owner.login", @"IHIssue",
-//                                 nil];
-    
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    [request setEntity:entityDescription];
-    NSPredicate *predicate = [NSPredicate predicateWithValue:YES];
-    if (predicateKey && [dictionary objectForKey:[predicateKey toUnderscore]] != nil)
-    {
-        predicate = [NSPredicate predicateWithFormat:@"%K LIKE %@", predicateKey, [dictionary objectForKey:[predicateKey toUnderscore]]];
-    }
-    else if (predicateKey && [[attributeMap allKeys] containsObject:predicateKey])
-    {
-        predicate = [NSPredicate predicateWithFormat:@"%K LIKE %@", predicateKey, [dictionary objectForKey:[attributeMap objectForKey:predicateKey]]];
-    }
-    else if ([[[entityDescription attributesByName] allKeys] containsObject:@"remoteObjectID"])
-    {
-        predicate = [NSPredicate predicateWithFormat:@"remoteObjectID == %@", [dictionary objectForKey:@"id"]];
-    }
-    
-    [request setPredicate:predicate];
-    
-    if ([self countForFetchRequest:request error:nil] == 0)
-    {        
-        NSLog(@"Creating NSManagedObject: %@", entityName);
-        managedObject = [NSClassFromString(entityName) performSelector:@selector(insertInManagedObjectContext:) withObject:self];
-    }
-    else
-    {
-        NSLog(@"Retrieving NSManagedObject: %@", entityName);
-        managedObject = [[self executeFetchRequest:request error:nil] objectAtIndex:0];
-    }
-
-    [self updateManagedObject:managedObject withDictionary:dictionary];
-    [self updateRelationshipsOnManagedObject:managedObject withDictionary:dictionary];
-    [self updateSecondLevelRelationshipsOnManagedObject:managedObject withDictionary:dictionary];
-      
-    return managedObject;
-}
-
-
-- (id)managedObjectWithEntityName:(NSString *)entityName fromDictionary:(NSDictionary *)dictionary withPredicateKey:(NSString *)predicateKey parentObject:(NSManagedObject *)parentObject
-{
-    NSEntityDescription *entityDescription = [NSEntityDescription entityForName:entityName inManagedObjectContext:self];
-    NSString *relationshipForParent = [[[entityDescription relationshipsWithDestinationEntity:(NSEntityDescription *)[parentObject entity]] firstObject] name];
-    
-    id managedObject = [self managedObjectWithEntityName:entityName fromDictionary:dictionary withPredicateKey:predicateKey];
-    [managedObject setValue:parentObject forKey:relationshipForParent];
-    return managedObject;
 }
 
 
