@@ -73,8 +73,7 @@
             {
                 for (NSDictionary *objDictionary in [dictionary objectForKey:relationshipName])
                 {
-                    id managedObjectForRelationship = [self managedObjectWithEntity:[relationshipDescription destinationEntity] dictionary:dictionary primaryKey:nil];
-                    
+                    id managedObjectForRelationship = [self managedObjectWithEntity:[relationshipDescription destinationEntity] dictionary:objDictionary primaryKey:nil];
                     if (!managedObjectForRelationship)
                     {
                         managedObjectForRelationship = [NSClassFromString([[relationshipDescription destinationEntity] name]) performSelector:@selector(insertInManagedObjectContext:) withObject:self];
