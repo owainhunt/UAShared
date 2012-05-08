@@ -37,7 +37,7 @@
     NSArray *attributeNames = [[[NSEntityDescription entityForName:NSStringFromClass([obj class]) inManagedObjectContext:self] attributesByName] allKeys];
     for (NSString *attributeName in attributeNames)
     {
-        if ([[attributeMap allKeys] containsObject:attributeName])
+        if ([[attributeMap allKeys] containsObject:attributeName] && !([[dictionary objectForKey:[attributeMap objectForKey:attributeName]] isEqual:[NSNull null]]))
         {
             [obj setValue:[dictionary objectForKey:[attributeMap objectForKey:attributeName]] forKey:attributeName];
         }
