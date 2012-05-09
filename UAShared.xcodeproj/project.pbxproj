@@ -46,6 +46,8 @@
 		CC5878131546D7FD00B6EDC5 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC5878121546D7FD00B6EDC5 /* QuartzCore.framework */; };
 		CC5878391546DBF600B6EDC5 /* NSView+Utilities.h in Headers */ = {isa = PBXBuildFile; fileRef = CC5878371546DBF600B6EDC5 /* NSView+Utilities.h */; };
 		CC58783A1546DBF600B6EDC5 /* NSView+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = CC5878381546DBF600B6EDC5 /* NSView+Utilities.m */; };
+		CCC6F518155B1F9C008E5082 /* NSNumber+StringUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = CCC6F516155B1F9C008E5082 /* NSNumber+StringUtilities.h */; };
+		CCC6F519155B1F9C008E5082 /* NSNumber+StringUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = CCC6F517155B1F9C008E5082 /* NSNumber+StringUtilities.m */; };
 		CCCAF39B152A4F8300E22571 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCCAF39A152A4F8300E22571 /* Cocoa.framework */; };
 		CCCAF3A5152A4F8300E22571 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CCCAF3A3152A4F8300E22571 /* InfoPlist.strings */; };
 		CCCAF3C3152A4FE100E22571 /* UAShared.h in Headers */ = {isa = PBXBuildFile; fileRef = CCCAF3A7152A4F8300E22571 /* UAShared.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -77,6 +79,8 @@
 		CC5878121546D7FD00B6EDC5 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
 		CC5878371546DBF600B6EDC5 /* NSView+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSView+Utilities.h"; sourceTree = "<group>"; };
 		CC5878381546DBF600B6EDC5 /* NSView+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSView+Utilities.m"; sourceTree = "<group>"; };
+		CCC6F516155B1F9C008E5082 /* NSNumber+StringUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+StringUtilities.h"; sourceTree = "<group>"; };
+		CCC6F517155B1F9C008E5082 /* NSNumber+StringUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+StringUtilities.m"; sourceTree = "<group>"; };
 		CCCAF397152A4F8300E22571 /* UAShared.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UAShared.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CCCAF39A152A4F8300E22571 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		CCCAF39D152A4F8300E22571 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -108,6 +112,39 @@
 				CCCAF399152A4F8300E22571 /* Frameworks */,
 				CCCAF398152A4F8300E22571 /* Products */,
 			);
+			sourceTree = "<group>";
+		};
+		CCC6F51B155B1FB6008E5082 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				CC5878371546DBF600B6EDC5 /* NSView+Utilities.h */,
+				CC5878381546DBF600B6EDC5 /* NSView+Utilities.m */,
+				CC52FF0B15378196005A767A /* NSArray+Utilities.h */,
+				CC52FF0C15378196005A767A /* NSArray+Utilities.m */,
+				CC52FF0D15378196005A767A /* NSAttributeDescription+ColumnTypes.h */,
+				CC52FF0E15378196005A767A /* NSAttributeDescription+ColumnTypes.m */,
+				CC52FF0F15378196005A767A /* NSData+Base64.h */,
+				CC52FF1015378196005A767A /* NSData+Base64.m */,
+				CC52FF1115378196005A767A /* NSDate+Utilities.h */,
+				CC52FF1215378196005A767A /* NSDate+Utilities.m */,
+				CC52FF1315378196005A767A /* NSEntityDescription+AttributeMapping.h */,
+				CC52FF1415378196005A767A /* NSEntityDescription+AttributeMapping.m */,
+				CC52FF1515378196005A767A /* NSManagedObject+JSON.h */,
+				CC52FF1615378196005A767A /* NSManagedObject+JSON.m */,
+				CC52FF1715378196005A767A /* NSManagedObject+URI.h */,
+				CC52FF1815378196005A767A /* NSManagedObject+URI.m */,
+				CC52FF1915378196005A767A /* NSManagedObjectContext+Fetching.h */,
+				CC52FF1A15378196005A767A /* NSManagedObjectContext+Fetching.m */,
+				CC52FF1B15378196005A767A /* NSManagedObjectContext+Utilities.h */,
+				CC52FF1C15378196005A767A /* NSManagedObjectContext+Utilities.m */,
+				CC52FF1D15378196005A767A /* NSObject+Utilities.h */,
+				CC52FF1E15378196005A767A /* NSObject+Utilities.m */,
+				CC52FF1F15378196005A767A /* NSString+Utilities.h */,
+				CC52FF2015378196005A767A /* NSString+Utilities.m */,
+				CCC6F516155B1F9C008E5082 /* NSNumber+StringUtilities.h */,
+				CCC6F517155B1F9C008E5082 /* NSNumber+StringUtilities.m */,
+			);
+			name = Categories;
 			sourceTree = "<group>";
 		};
 		CCCAF398152A4F8300E22571 /* Products */ = {
@@ -142,30 +179,7 @@
 			isa = PBXGroup;
 			children = (
 				CCCAF3A7152A4F8300E22571 /* UAShared.h */,
-				CC5878371546DBF600B6EDC5 /* NSView+Utilities.h */,
-				CC5878381546DBF600B6EDC5 /* NSView+Utilities.m */,
-				CC52FF0B15378196005A767A /* NSArray+Utilities.h */,
-				CC52FF0C15378196005A767A /* NSArray+Utilities.m */,
-				CC52FF0D15378196005A767A /* NSAttributeDescription+ColumnTypes.h */,
-				CC52FF0E15378196005A767A /* NSAttributeDescription+ColumnTypes.m */,
-				CC52FF0F15378196005A767A /* NSData+Base64.h */,
-				CC52FF1015378196005A767A /* NSData+Base64.m */,
-				CC52FF1115378196005A767A /* NSDate+Utilities.h */,
-				CC52FF1215378196005A767A /* NSDate+Utilities.m */,
-				CC52FF1315378196005A767A /* NSEntityDescription+AttributeMapping.h */,
-				CC52FF1415378196005A767A /* NSEntityDescription+AttributeMapping.m */,
-				CC52FF1515378196005A767A /* NSManagedObject+JSON.h */,
-				CC52FF1615378196005A767A /* NSManagedObject+JSON.m */,
-				CC52FF1715378196005A767A /* NSManagedObject+URI.h */,
-				CC52FF1815378196005A767A /* NSManagedObject+URI.m */,
-				CC52FF1915378196005A767A /* NSManagedObjectContext+Fetching.h */,
-				CC52FF1A15378196005A767A /* NSManagedObjectContext+Fetching.m */,
-				CC52FF1B15378196005A767A /* NSManagedObjectContext+Utilities.h */,
-				CC52FF1C15378196005A767A /* NSManagedObjectContext+Utilities.m */,
-				CC52FF1D15378196005A767A /* NSObject+Utilities.h */,
-				CC52FF1E15378196005A767A /* NSObject+Utilities.m */,
-				CC52FF1F15378196005A767A /* NSString+Utilities.h */,
-				CC52FF2015378196005A767A /* NSString+Utilities.m */,
+				CCC6F51B155B1FB6008E5082 /* Categories */,
 				CCCAF3A1152A4F8300E22571 /* Supporting Files */,
 			);
 			path = UAShared;
@@ -201,6 +215,7 @@
 				CC52FF3415378196005A767A /* NSObject+Utilities.h in Headers */,
 				CC52FF3615378196005A767A /* NSString+Utilities.h in Headers */,
 				CC5878391546DBF600B6EDC5 /* NSView+Utilities.h in Headers */,
+				CCC6F518155B1F9C008E5082 /* NSNumber+StringUtilities.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,6 +311,7 @@
 				CC52FF3515378196005A767A /* NSObject+Utilities.m in Sources */,
 				CC52FF3715378196005A767A /* NSString+Utilities.m in Sources */,
 				CC58783A1546DBF600B6EDC5 /* NSView+Utilities.m in Sources */,
+				CCC6F519155B1F9C008E5082 /* NSNumber+StringUtilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

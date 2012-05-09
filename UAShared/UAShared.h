@@ -19,6 +19,7 @@
 #import "NSDate+Utilities.h"
 #import "NSString+Utilities.h"
 #import "NSArray+Utilities.h"
+#import "NSNumber+StringUtilities.h"
 
 #ifdef DEBUG
 #    define UALog(fmt, ...) NSLog(@"%s:%d (%s): " fmt, __FILE__, __LINE__, __func__, ## __VA_ARGS__)
