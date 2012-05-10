@@ -51,6 +51,8 @@
 		CCCAF39B152A4F8300E22571 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCCAF39A152A4F8300E22571 /* Cocoa.framework */; };
 		CCCAF3A5152A4F8300E22571 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CCCAF3A3152A4F8300E22571 /* InfoPlist.strings */; };
 		CCCAF3C3152A4FE100E22571 /* UAShared.h in Headers */ = {isa = PBXBuildFile; fileRef = CCCAF3A7152A4F8300E22571 /* UAShared.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CCEC2E7D155C1DB9007740D3 /* NSView+BadgeDrawing.h in Headers */ = {isa = PBXBuildFile; fileRef = CCEC2E7B155C1DB9007740D3 /* NSView+BadgeDrawing.h */; };
+		CCEC2E7E155C1DB9007740D3 /* NSView+BadgeDrawing.m in Sources */ = {isa = PBXBuildFile; fileRef = CCEC2E7C155C1DB9007740D3 /* NSView+BadgeDrawing.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -90,6 +92,8 @@
 		CCCAF3A4152A4F8300E22571 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		CCCAF3A6152A4F8300E22571 /* UAShared-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UAShared-Prefix.pch"; sourceTree = "<group>"; };
 		CCCAF3A7152A4F8300E22571 /* UAShared.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UAShared.h; sourceTree = "<group>"; };
+		CCEC2E7B155C1DB9007740D3 /* NSView+BadgeDrawing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSView+BadgeDrawing.h"; path = "../NSView+BadgeDrawing.h"; sourceTree = "<group>"; };
+		CCEC2E7C155C1DB9007740D3 /* NSView+BadgeDrawing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSView+BadgeDrawing.m"; path = "../NSView+BadgeDrawing.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +123,8 @@
 			children = (
 				CC5878371546DBF600B6EDC5 /* NSView+Utilities.h */,
 				CC5878381546DBF600B6EDC5 /* NSView+Utilities.m */,
+				CCEC2E7B155C1DB9007740D3 /* NSView+BadgeDrawing.h */,
+				CCEC2E7C155C1DB9007740D3 /* NSView+BadgeDrawing.m */,
 				CC52FF0B15378196005A767A /* NSArray+Utilities.h */,
 				CC52FF0C15378196005A767A /* NSArray+Utilities.m */,
 				CC52FF0D15378196005A767A /* NSAttributeDescription+ColumnTypes.h */,
@@ -216,6 +222,7 @@
 				CC52FF3615378196005A767A /* NSString+Utilities.h in Headers */,
 				CC5878391546DBF600B6EDC5 /* NSView+Utilities.h in Headers */,
 				CCC6F518155B1F9C008E5082 /* NSNumber+StringUtilities.h in Headers */,
+				CCEC2E7D155C1DB9007740D3 /* NSView+BadgeDrawing.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -312,6 +319,7 @@
 				CC52FF3715378196005A767A /* NSString+Utilities.m in Sources */,
 				CC58783A1546DBF600B6EDC5 /* NSView+Utilities.m in Sources */,
 				CCC6F519155B1F9C008E5082 /* NSNumber+StringUtilities.m in Sources */,
+				CCEC2E7E155C1DB9007740D3 /* NSView+BadgeDrawing.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
