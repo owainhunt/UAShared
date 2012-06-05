@@ -115,6 +115,12 @@
 }
 
 
+- (id)managedObjectWithEntityName:(NSString *)entityName fromDictionary:(NSDictionary *)dictionary
+{
+    return [self managedObjectWithEntityName:entityName fromDictionary:dictionary withPredicateKey:nil havingRelatedObject:nil forRelationship:nil];
+}
+
+
 - (id)managedObjectWithEntityName:(NSString *)entityName fromDictionary:(NSDictionary *)dictionary withPredicateKey:(NSString *)predicateKey parentObject:(NSManagedObject *)parentObject
 {
     NSEntityDescription *entityDescription = [NSEntityDescription entityForName:entityName inManagedObjectContext:self];
