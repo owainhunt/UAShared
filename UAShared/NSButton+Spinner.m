@@ -13,13 +13,24 @@
 - (void)showProgressIndicator
 {
     CGRect frame = self.bounds;
-    CGPoint center;
-    center.x = NSMidX(frame);
-    center.y = NSMidY(frame);
-    CGRect spinnerFrame = CGRectMake(center.x - 5, center.y - 6, frame.size.width, 10);
+    CGFloat sideLength = 10;
+    CGFloat yPosModifier = 1;
+    if ([self.cell controlSize] == NSRegularControlSize)
+    {
+        sideLength = 16;
+        yPosModifier = 2;
+    }
+    CGRect spinnerFrame = CGRectMake(NSMidX(frame) - (sideLength/2), NSMidY(frame) - (sideLength/2) - yPosModifier, sideLength, sideLength);
     NSProgressIndicator *spinner = [[NSProgressIndicator alloc] initWithFrame:spinnerFrame];
     spinner.style = NSProgressIndicatorSpinningStyle;
-    spinner.controlSize = NSMiniControlSize;
+    if ([self.cell controlSize] == NSRegularControlSize)
+    {
+        spinner.controlSize = NSSmallControlSize;
+    }
+    else
+    {
+        spinner.controlSize = NSMiniControlSize;
+    }
     [spinner startAnimation:self];
     [self addSubview:spinner];
     self.state = NSOnState;
