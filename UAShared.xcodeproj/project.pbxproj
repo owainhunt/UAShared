@@ -46,6 +46,8 @@
 		CC5878131546D7FD00B6EDC5 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC5878121546D7FD00B6EDC5 /* QuartzCore.framework */; };
 		CC5878391546DBF600B6EDC5 /* NSView+Utilities.h in Headers */ = {isa = PBXBuildFile; fileRef = CC5878371546DBF600B6EDC5 /* NSView+Utilities.h */; };
 		CC58783A1546DBF600B6EDC5 /* NSView+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = CC5878381546DBF600B6EDC5 /* NSView+Utilities.m */; };
+		CCA1609C158258120000B335 /* NSButton+Spinner.h in Headers */ = {isa = PBXBuildFile; fileRef = CCA1609A158258120000B335 /* NSButton+Spinner.h */; };
+		CCA1609D158258120000B335 /* NSButton+Spinner.m in Sources */ = {isa = PBXBuildFile; fileRef = CCA1609B158258120000B335 /* NSButton+Spinner.m */; };
 		CCC6F518155B1F9C008E5082 /* NSNumber+StringUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = CCC6F516155B1F9C008E5082 /* NSNumber+StringUtilities.h */; };
 		CCC6F519155B1F9C008E5082 /* NSNumber+StringUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = CCC6F517155B1F9C008E5082 /* NSNumber+StringUtilities.m */; };
 		CCCAF39B152A4F8300E22571 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCCAF39A152A4F8300E22571 /* Cocoa.framework */; };
@@ -81,6 +83,8 @@
 		CC5878121546D7FD00B6EDC5 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
 		CC5878371546DBF600B6EDC5 /* NSView+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSView+Utilities.h"; sourceTree = "<group>"; };
 		CC5878381546DBF600B6EDC5 /* NSView+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSView+Utilities.m"; sourceTree = "<group>"; };
+		CCA1609A158258120000B335 /* NSButton+Spinner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSButton+Spinner.h"; sourceTree = "<group>"; };
+		CCA1609B158258120000B335 /* NSButton+Spinner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSButton+Spinner.m"; sourceTree = "<group>"; };
 		CCC6F516155B1F9C008E5082 /* NSNumber+StringUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+StringUtilities.h"; sourceTree = "<group>"; };
 		CCC6F517155B1F9C008E5082 /* NSNumber+StringUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+StringUtilities.m"; sourceTree = "<group>"; };
 		CCCAF397152A4F8300E22571 /* UAShared.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UAShared.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -149,6 +153,8 @@
 				CC52FF2015378196005A767A /* NSString+Utilities.m */,
 				CCC6F516155B1F9C008E5082 /* NSNumber+StringUtilities.h */,
 				CCC6F517155B1F9C008E5082 /* NSNumber+StringUtilities.m */,
+				CCA1609A158258120000B335 /* NSButton+Spinner.h */,
+				CCA1609B158258120000B335 /* NSButton+Spinner.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -223,6 +229,7 @@
 				CC5878391546DBF600B6EDC5 /* NSView+Utilities.h in Headers */,
 				CCC6F518155B1F9C008E5082 /* NSNumber+StringUtilities.h in Headers */,
 				CCEC2E7D155C1DB9007740D3 /* NSView+BadgeDrawing.h in Headers */,
+				CCA1609C158258120000B335 /* NSButton+Spinner.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -320,6 +327,7 @@
 				CC58783A1546DBF600B6EDC5 /* NSView+Utilities.m in Sources */,
 				CCC6F519155B1F9C008E5082 /* NSNumber+StringUtilities.m in Sources */,
 				CCEC2E7E155C1DB9007740D3 /* NSView+BadgeDrawing.m in Sources */,
+				CCA1609D158258120000B335 /* NSButton+Spinner.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
