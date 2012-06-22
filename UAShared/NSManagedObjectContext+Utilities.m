@@ -62,11 +62,11 @@
     NSPredicate *predicate = [NSPredicate predicateWithValue:YES];
     if (predicateKey && [dictionary objectForKey:[predicateKey toUnderscore]] != nil)
     {
-        predicate = [NSPredicate predicateWithFormat:@"%K LIKE %@", predicateKey, [dictionary objectForKey:[predicateKey toUnderscore]]];
+        predicate = [NSPredicate predicateWithFormat:@"%K LIKE[cd] %@", predicateKey, [dictionary objectForKey:[predicateKey toUnderscore]]];
     }
     else if (predicateKey && [[attributeMap allKeys] containsObject:predicateKey])
     {
-        predicate = [NSPredicate predicateWithFormat:@"%K LIKE %@", predicateKey, [dictionary objectForKey:[attributeMap objectForKey:predicateKey]]];
+        predicate = [NSPredicate predicateWithFormat:@"%K LIKE[cd] %@", predicateKey, [dictionary objectForKey:[attributeMap objectForKey:predicateKey]]];
     }
     else if ([[[entityDescription attributesByName] allKeys] containsObject:@"remoteObjectID"])
     {
@@ -262,7 +262,7 @@
     [fetchRequest setEntity:entityDescription];
     if (primaryKey)
     {
-        [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"%K LIKE %@", primaryKey, [dictionary objectForKey:[primaryKey toUnderscore]]]];        
+        [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"%K LIKE[cd] %@", primaryKey, [dictionary objectForKey:[primaryKey toUnderscore]]]];        
     }
     else if ([[[entityDescription attributesByName] allKeys] containsObject:@"remoteObjectID"])
     {
