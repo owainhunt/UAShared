@@ -12,5 +12,6 @@
 
 - (void)showProgressIndicator;
 - (void)hideProgressIndicatorWithTitle:(NSString *)newTitle;
+- (void)hideProgressIndicatorWithImage:(NSImage *)newImage;
 
 @end

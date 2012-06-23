@@ -35,6 +35,7 @@
     [self addSubview:spinner];
     self.state = NSOnState;
     self.title = @"";
+    self.image = nil;
     self.enabled = NO;
 }
 
@@ -51,6 +52,22 @@
     }];
     self.state = NSOffState;
     self.title = newTitle;
+    self.enabled = YES;
+}
+
+
+- (void)hideProgressIndicatorWithImage:(NSImage *)newImage
+{
+    NSArray *subviews = [self subviews];
+    [subviews enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        if ([obj isKindOfClass:[NSProgressIndicator class]])
+        {
+            [obj removeFromSuperview];
+            *stop = YES;
+        }
+    }];
+    self.state = NSOffState;
+    self.image = newImage;
     self.enabled = YES;
 }
 
