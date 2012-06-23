@@ -35,6 +35,7 @@
     [self addSubview:spinner];
     self.state = NSOnState;
     self.title = @"";
+    self.enabled = NO;
 }
 
 
@@ -50,6 +51,7 @@
     }];
     self.state = NSOffState;
     self.title = newTitle;
+    self.enabled = YES;
 }
 
 @end
