@@ -164,6 +164,11 @@
 
 - (id)updateRelationshipsOnManagedObject:(NSManagedObject *)obj withDictionary:(NSDictionary *)dictionary
 {
+    if (!dictionary || [dictionary isEqual:[NSNull null]])
+    {
+        return nil;
+    }
+    
     NSEntityDescription *entityDescription = [obj entity];
     for (NSString *relationshipName in [[entityDescription relationshipsByName] allKeys]) 
     {
