@@ -24,7 +24,6 @@
 		CC0831CA1624858400D3A4E2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CC0831C81624858400D3A4E2 /* InfoPlist.strings */; };
 		CC0831CF162485B800D3A4E2 /* NSArray+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = CC52FF0C15378196005A767A /* NSArray+Utilities.m */; };
 		CC0831D0162485B800D3A4E2 /* NSAttributeDescription+ColumnTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = CC52FF0E15378196005A767A /* NSAttributeDescription+ColumnTypes.m */; };
-		CC0831D1162485B800D3A4E2 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = CC52FF1015378196005A767A /* NSData+Base64.m */; };
 		CC0831D2162485B800D3A4E2 /* NSDate+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = CC52FF1215378196005A767A /* NSDate+Utilities.m */; };
 		CC0831D3162485B800D3A4E2 /* NSEntityDescription+AttributeMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = CC52FF1415378196005A767A /* NSEntityDescription+AttributeMapping.m */; };
 		CC0831D4162485B800D3A4E2 /* NSManagedObject+JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = CC52FF1615378196005A767A /* NSManagedObject+JSON.m */; };
@@ -37,7 +36,6 @@
 		CC0831DB162485C000D3A4E2 /* UAShared.h in Headers */ = {isa = PBXBuildFile; fileRef = CCCAF3A7152A4F8300E22571 /* UAShared.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CC0831DC162485D000D3A4E2 /* NSArray+Utilities.h in Headers */ = {isa = PBXBuildFile; fileRef = CC52FF0B15378196005A767A /* NSArray+Utilities.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CC0831DD162485D000D3A4E2 /* NSAttributeDescription+ColumnTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = CC52FF0D15378196005A767A /* NSAttributeDescription+ColumnTypes.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CC0831DE162485D000D3A4E2 /* NSData+Base64.h in Headers */ = {isa = PBXBuildFile; fileRef = CC52FF0F15378196005A767A /* NSData+Base64.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CC0831DF162485D000D3A4E2 /* NSDate+Utilities.h in Headers */ = {isa = PBXBuildFile; fileRef = CC52FF1115378196005A767A /* NSDate+Utilities.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CC0831E0162485D000D3A4E2 /* NSEntityDescription+AttributeMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = CC52FF1315378196005A767A /* NSEntityDescription+AttributeMapping.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CC0831E1162485D000D3A4E2 /* NSManagedObject+JSON.h in Headers */ = {isa = PBXBuildFile; fileRef = CC52FF1515378196005A767A /* NSManagedObject+JSON.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -282,7 +280,6 @@
 				CC0831DB162485C000D3A4E2 /* UAShared.h in Headers */,
 				CC0831DC162485D000D3A4E2 /* NSArray+Utilities.h in Headers */,
 				CC0831DD162485D000D3A4E2 /* NSAttributeDescription+ColumnTypes.h in Headers */,
-				CC0831DE162485D000D3A4E2 /* NSData+Base64.h in Headers */,
 				CC0831DF162485D000D3A4E2 /* NSDate+Utilities.h in Headers */,
 				CC0831E0162485D000D3A4E2 /* NSEntityDescription+AttributeMapping.h in Headers */,
 				CC0831E1162485D000D3A4E2 /* NSManagedObject+JSON.h in Headers */,
@@ -456,7 +453,6 @@
 			files = (
 				CC0831CF162485B800D3A4E2 /* NSArray+Utilities.m in Sources */,
 				CC0831D0162485B800D3A4E2 /* NSAttributeDescription+ColumnTypes.m in Sources */,
-				CC0831D1162485B800D3A4E2 /* NSData+Base64.m in Sources */,
 				CC0831D2162485B800D3A4E2 /* NSDate+Utilities.m in Sources */,
 				CC0831D3162485B800D3A4E2 /* NSEntityDescription+AttributeMapping.m in Sources */,
 				CC0831D4162485B800D3A4E2 /* NSManagedObject+JSON.m in Sources */,

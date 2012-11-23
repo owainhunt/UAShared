@@ -11,6 +11,7 @@
     #import "NSView+BadgeDrawing.h"
     #import "NSButton+Spinner.h"
     #import "NSSearchField+Spinner.h"
+    #import "NSData+Base64.h"
 #endif
 
 #import <Foundation/Foundation.h>
@@ -20,7 +21,6 @@
 #import "NSManagedObject+JSON.h"
 #import "NSManagedObject+URI.h"
 #import "NSManagedObjectContext+Utilities.h"
-#import "NSData+Base64.h"
 #import "NSObject+Utilities.h"
 #import "NSDate+Utilities.h"
 #import "NSString+Utilities.h"
