@@ -613,6 +613,7 @@
 		CCC4516D14807A4F00F370E8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				HEADER_SEARCH_PATHS = "$(SRC_ROOT)/*/**";
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -620,6 +621,7 @@
 		CCC4516E14807A4F00F370E8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				HEADER_SEARCH_PATHS = "$(SRC_ROOT)/*/**";
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
