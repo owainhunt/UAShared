@@ -14,9 +14,29 @@
 			<key>orderHint</key>
 			<integer>3</integer>
 		</dict>
+		<key>iUAShared.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>4</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>CC0831781624801C00D3A4E2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CC0831A3162482E400D3A4E2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CC0831C31624858400D3A4E2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>CC4A382614952349004B7653</key>
 		<dict>
 			<key>primary</key>

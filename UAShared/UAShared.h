@@ -6,10 +6,16 @@
 //  Copyright (c) 2012 Owain R Hunt. All rights reserved.
 //
 
+#if __MAC_OS_X_VERSION_MIN_REQUIRED
+    #import "NSView+Utilities.h"
+    #import "NSView+BadgeDrawing.h"
+    #import "NSButton+Spinner.h"
+    #import "NSSearchField+Spinner.h"
+#endif
+
 #import <Foundation/Foundation.h>
 #import <QuartzCore/QuartzCore.h>
 #import "NSManagedObjectContext+Fetching.h"
-#import "NSView+Utilities.h"
 #import "NSAttributeDescription+ColumnTypes.h"
 #import "NSManagedObject+JSON.h"
 #import "NSManagedObject+URI.h"
@@ -20,14 +26,14 @@
 #import "NSString+Utilities.h"
 #import "NSArray+Utilities.h"
 #import "NSNumber+StringUtilities.h"
-#import "NSView+BadgeDrawing.h"
-#import "NSButton+Spinner.h"
 
 #ifdef DEBUG
 #    define UALog(fmt, ...) NSLog(@"%s:%d (%s): " fmt, __FILE__, __LINE__, __func__, ## __VA_ARGS__)
 #else
 #    define UALog(...)
 #endif
+
+#define swf(fmt, ...) [NSString stringWithFormat:fmt, ## __VA_ARGS__]
 
 // https://github.com/Machx/Zangetsu/blob/master/Source/CWMacros.h
 

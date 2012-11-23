@@ -21,6 +21,32 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		CC0831CA1624858400D3A4E2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CC0831C81624858400D3A4E2 /* InfoPlist.strings */; };
+		CC0831CF162485B800D3A4E2 /* NSArray+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = CC52FF0C15378196005A767A /* NSArray+Utilities.m */; };
+		CC0831D0162485B800D3A4E2 /* NSAttributeDescription+ColumnTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = CC52FF0E15378196005A767A /* NSAttributeDescription+ColumnTypes.m */; };
+		CC0831D1162485B800D3A4E2 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = CC52FF1015378196005A767A /* NSData+Base64.m */; };
+		CC0831D2162485B800D3A4E2 /* NSDate+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = CC52FF1215378196005A767A /* NSDate+Utilities.m */; };
+		CC0831D3162485B800D3A4E2 /* NSEntityDescription+AttributeMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = CC52FF1415378196005A767A /* NSEntityDescription+AttributeMapping.m */; };
+		CC0831D4162485B800D3A4E2 /* NSManagedObject+JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = CC52FF1615378196005A767A /* NSManagedObject+JSON.m */; };
+		CC0831D5162485B800D3A4E2 /* NSManagedObject+URI.m in Sources */ = {isa = PBXBuildFile; fileRef = CC52FF1815378196005A767A /* NSManagedObject+URI.m */; };
+		CC0831D6162485B800D3A4E2 /* NSManagedObjectContext+Fetching.m in Sources */ = {isa = PBXBuildFile; fileRef = CC52FF1A15378196005A767A /* NSManagedObjectContext+Fetching.m */; };
+		CC0831D7162485B800D3A4E2 /* NSManagedObjectContext+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = CC52FF1C15378196005A767A /* NSManagedObjectContext+Utilities.m */; };
+		CC0831D8162485B800D3A4E2 /* NSObject+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = CC52FF1E15378196005A767A /* NSObject+Utilities.m */; };
+		CC0831D9162485B800D3A4E2 /* NSString+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = CC52FF2015378196005A767A /* NSString+Utilities.m */; };
+		CC0831DA162485B800D3A4E2 /* NSNumber+StringUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = CCC6F517155B1F9C008E5082 /* NSNumber+StringUtilities.m */; };
+		CC0831DB162485C000D3A4E2 /* UAShared.h in Headers */ = {isa = PBXBuildFile; fileRef = CCCAF3A7152A4F8300E22571 /* UAShared.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CC0831DC162485D000D3A4E2 /* NSArray+Utilities.h in Headers */ = {isa = PBXBuildFile; fileRef = CC52FF0B15378196005A767A /* NSArray+Utilities.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CC0831DD162485D000D3A4E2 /* NSAttributeDescription+ColumnTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = CC52FF0D15378196005A767A /* NSAttributeDescription+ColumnTypes.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CC0831DE162485D000D3A4E2 /* NSData+Base64.h in Headers */ = {isa = PBXBuildFile; fileRef = CC52FF0F15378196005A767A /* NSData+Base64.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CC0831DF162485D000D3A4E2 /* NSDate+Utilities.h in Headers */ = {isa = PBXBuildFile; fileRef = CC52FF1115378196005A767A /* NSDate+Utilities.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CC0831E0162485D000D3A4E2 /* NSEntityDescription+AttributeMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = CC52FF1315378196005A767A /* NSEntityDescription+AttributeMapping.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CC0831E1162485D000D3A4E2 /* NSManagedObject+JSON.h in Headers */ = {isa = PBXBuildFile; fileRef = CC52FF1515378196005A767A /* NSManagedObject+JSON.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CC0831E2162485D000D3A4E2 /* NSManagedObject+URI.h in Headers */ = {isa = PBXBuildFile; fileRef = CC52FF1715378196005A767A /* NSManagedObject+URI.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CC0831E3162485D000D3A4E2 /* NSManagedObjectContext+Fetching.h in Headers */ = {isa = PBXBuildFile; fileRef = CC52FF1915378196005A767A /* NSManagedObjectContext+Fetching.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CC0831E4162485D000D3A4E2 /* NSManagedObjectContext+Utilities.h in Headers */ = {isa = PBXBuildFile; fileRef = CC52FF1B15378196005A767A /* NSManagedObjectContext+Utilities.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CC0831E5162485D000D3A4E2 /* NSObject+Utilities.h in Headers */ = {isa = PBXBuildFile; fileRef = CC52FF1D15378196005A767A /* NSObject+Utilities.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CC0831E6162485D000D3A4E2 /* NSString+Utilities.h in Headers */ = {isa = PBXBuildFile; fileRef = CC52FF1F15378196005A767A /* NSString+Utilities.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CC0831E7162485D000D3A4E2 /* NSNumber+StringUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = CCC6F516155B1F9C008E5082 /* NSNumber+StringUtilities.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CC52FF2215378196005A767A /* NSArray+Utilities.h in Headers */ = {isa = PBXBuildFile; fileRef = CC52FF0B15378196005A767A /* NSArray+Utilities.h */; };
 		CC52FF2315378196005A767A /* NSArray+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = CC52FF0C15378196005A767A /* NSArray+Utilities.m */; };
 		CC52FF2415378196005A767A /* NSAttributeDescription+ColumnTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = CC52FF0D15378196005A767A /* NSAttributeDescription+ColumnTypes.h */; };
@@ -53,11 +79,18 @@
 		CCCAF39B152A4F8300E22571 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCCAF39A152A4F8300E22571 /* Cocoa.framework */; };
 		CCCAF3A5152A4F8300E22571 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CCCAF3A3152A4F8300E22571 /* InfoPlist.strings */; };
 		CCCAF3C3152A4FE100E22571 /* UAShared.h in Headers */ = {isa = PBXBuildFile; fileRef = CCCAF3A7152A4F8300E22571 /* UAShared.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CCDE6CCA15F8CDCB000569EE /* NSSearchField+Spinner.h in Headers */ = {isa = PBXBuildFile; fileRef = CCDE6CC815F8CDCB000569EE /* NSSearchField+Spinner.h */; };
+		CCDE6CCB15F8CDCB000569EE /* NSSearchField+Spinner.m in Sources */ = {isa = PBXBuildFile; fileRef = CCDE6CC915F8CDCB000569EE /* NSSearchField+Spinner.m */; };
 		CCEC2E7D155C1DB9007740D3 /* NSView+BadgeDrawing.h in Headers */ = {isa = PBXBuildFile; fileRef = CCEC2E7B155C1DB9007740D3 /* NSView+BadgeDrawing.h */; };
 		CCEC2E7E155C1DB9007740D3 /* NSView+BadgeDrawing.m in Sources */ = {isa = PBXBuildFile; fileRef = CCEC2E7C155C1DB9007740D3 /* NSView+BadgeDrawing.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CC0831791624801C00D3A4E2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		CC0831C41624858400D3A4E2 /* iUAShared.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iUAShared.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CC0831C71624858400D3A4E2 /* iUAShared-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iUAShared-Info.plist"; sourceTree = "<group>"; };
+		CC0831C91624858400D3A4E2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		CC0831CB1624858400D3A4E2 /* iUAShared-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iUAShared-Prefix.pch"; sourceTree = "<group>"; };
 		CC52FF0B15378196005A767A /* NSArray+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Utilities.h"; sourceTree = "<group>"; };
 		CC52FF0C15378196005A767A /* NSArray+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Utilities.m"; sourceTree = "<group>"; };
 		CC52FF0D15378196005A767A /* NSAttributeDescription+ColumnTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributeDescription+ColumnTypes.h"; sourceTree = "<group>"; };
@@ -96,11 +129,20 @@
 		CCCAF3A4152A4F8300E22571 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		CCCAF3A6152A4F8300E22571 /* UAShared-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UAShared-Prefix.pch"; sourceTree = "<group>"; };
 		CCCAF3A7152A4F8300E22571 /* UAShared.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UAShared.h; sourceTree = "<group>"; };
+		CCDE6CC815F8CDCB000569EE /* NSSearchField+Spinner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSSearchField+Spinner.h"; sourceTree = "<group>"; };
+		CCDE6CC915F8CDCB000569EE /* NSSearchField+Spinner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSSearchField+Spinner.m"; sourceTree = "<group>"; };
 		CCEC2E7B155C1DB9007740D3 /* NSView+BadgeDrawing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSView+BadgeDrawing.h"; path = "../NSView+BadgeDrawing.h"; sourceTree = "<group>"; };
 		CCEC2E7C155C1DB9007740D3 /* NSView+BadgeDrawing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSView+BadgeDrawing.m"; path = "../NSView+BadgeDrawing.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		CC0831BF1624858400D3A4E2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CCCAF393152A4F8300E22571 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -113,10 +155,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CC0831C51624858400D3A4E2 /* iUAShared */ = {
+			isa = PBXGroup;
+			children = (
+				CC0831C61624858400D3A4E2 /* Supporting Files */,
+			);
+			path = iUAShared;
+			sourceTree = "<group>";
+		};
+		CC0831C61624858400D3A4E2 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				CC0831C71624858400D3A4E2 /* iUAShared-Info.plist */,
+				CC0831C81624858400D3A4E2 /* InfoPlist.strings */,
+				CC0831CB1624858400D3A4E2 /* iUAShared-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		CCC4516614807A4F00F370E8 = {
 			isa = PBXGroup;
 			children = (
 				CCCAF3A0152A4F8300E22571 /* UAShared */,
+				CC0831C51624858400D3A4E2 /* iUAShared */,
 				CCCAF399152A4F8300E22571 /* Frameworks */,
 				CCCAF398152A4F8300E22571 /* Products */,
 			);
@@ -155,6 +216,8 @@
 				CCC6F517155B1F9C008E5082 /* NSNumber+StringUtilities.m */,
 				CCA1609A158258120000B335 /* NSButton+Spinner.h */,
 				CCA1609B158258120000B335 /* NSButton+Spinner.m */,
+				CCDE6CC815F8CDCB000569EE /* NSSearchField+Spinner.h */,
+				CCDE6CC915F8CDCB000569EE /* NSSearchField+Spinner.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -163,6 +226,7 @@
 			isa = PBXGroup;
 			children = (
 				CCCAF397152A4F8300E22571 /* UAShared.framework */,
+				CC0831C41624858400D3A4E2 /* iUAShared.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -172,6 +236,7 @@
 			children = (
 				CC5878121546D7FD00B6EDC5 /* QuartzCore.framework */,
 				CCCAF39A152A4F8300E22571 /* Cocoa.framework */,
+				CC0831791624801C00D3A4E2 /* Foundation.framework */,
 				CCCAF39C152A4F8300E22571 /* Other Frameworks */,
 			);
 			name = Frameworks;
@@ -180,8 +245,8 @@
 		CCCAF39C152A4F8300E22571 /* Other Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				CCCAF39D152A4F8300E22571 /* AppKit.framework */,
 				CCCAF39E152A4F8300E22571 /* CoreData.framework */,
+				CCCAF39D152A4F8300E22571 /* AppKit.framework */,
 				CCCAF39F152A4F8300E22571 /* Foundation.framework */,
 			);
 			name = "Other Frameworks";
@@ -210,6 +275,26 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		CC0831C01624858400D3A4E2 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CC0831DB162485C000D3A4E2 /* UAShared.h in Headers */,
+				CC0831DC162485D000D3A4E2 /* NSArray+Utilities.h in Headers */,
+				CC0831DD162485D000D3A4E2 /* NSAttributeDescription+ColumnTypes.h in Headers */,
+				CC0831DE162485D000D3A4E2 /* NSData+Base64.h in Headers */,
+				CC0831DF162485D000D3A4E2 /* NSDate+Utilities.h in Headers */,
+				CC0831E0162485D000D3A4E2 /* NSEntityDescription+AttributeMapping.h in Headers */,
+				CC0831E1162485D000D3A4E2 /* NSManagedObject+JSON.h in Headers */,
+				CC0831E2162485D000D3A4E2 /* NSManagedObject+URI.h in Headers */,
+				CC0831E3162485D000D3A4E2 /* NSManagedObjectContext+Fetching.h in Headers */,
+				CC0831E4162485D000D3A4E2 /* NSManagedObjectContext+Utilities.h in Headers */,
+				CC0831E5162485D000D3A4E2 /* NSObject+Utilities.h in Headers */,
+				CC0831E6162485D000D3A4E2 /* NSString+Utilities.h in Headers */,
+				CC0831E7162485D000D3A4E2 /* NSNumber+StringUtilities.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CCCAF394152A4F8300E22571 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -230,12 +315,33 @@
 				CCC6F518155B1F9C008E5082 /* NSNumber+StringUtilities.h in Headers */,
 				CCEC2E7D155C1DB9007740D3 /* NSView+BadgeDrawing.h in Headers */,
 				CCA1609C158258120000B335 /* NSButton+Spinner.h in Headers */,
+				CCDE6CCA15F8CDCB000569EE /* NSSearchField+Spinner.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		CC0831C31624858400D3A4E2 /* iUAShared */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CC0831CC1624858400D3A4E2 /* Build configuration list for PBXNativeTarget "iUAShared" */;
+			buildPhases = (
+				CC0831BD1624858400D3A4E2 /* ShellScript */,
+				CC0831BE1624858400D3A4E2 /* Sources */,
+				CC0831BF1624858400D3A4E2 /* Frameworks */,
+				CC0831C01624858400D3A4E2 /* Headers */,
+				CC0831C11624858400D3A4E2 /* Resources */,
+				CC0831C21624858400D3A4E2 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = iUAShared;
+			productName = iUAShared;
+			productReference = CC0831C41624858400D3A4E2 /* iUAShared.framework */;
+			productType = "com.apple.product-type.bundle";
+		};
 		CCCAF396152A4F8300E22571 /* UAShared */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = CCCAF3AC152A4F8300E22571 /* Build configuration list for PBXNativeTarget "UAShared" */;
@@ -260,7 +366,7 @@
 		CCC4516814807A4F00F370E8 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0440;
+				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = "Owain R Hunt";
 			};
 			buildConfigurationList = CCC4516B14807A4F00F370E8 /* Build configuration list for PBXProject "UAShared" */;
@@ -277,11 +383,20 @@
 			targets = (
 				CCCAF396152A4F8300E22571 /* UAShared */,
 				CC4A382614952349004B7653 /* Documentation */,
+				CC0831C31624858400D3A4E2 /* iUAShared */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		CC0831C11624858400D3A4E2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CC0831CA1624858400D3A4E2 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CCCAF395152A4F8300E22571 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -293,6 +408,32 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		CC0831BD1624858400D3A4E2 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e\n\nset +u\nif [[ $UFW_MASTER_SCRIPT_RUNNING ]]\nthen\n    # Nothing for the slave script to do\n    exit 0\nfi\nset -u\n\nif [[ \"$SDK_NAME\" =~ ([A-Za-z]+) ]]\nthen\n    UFW_SDK_PLATFORM=${BASH_REMATCH[1]}\nelse\n    echo \"Could not find platform name from SDK_NAME: $SDK_NAME\"\n    exit 1\nfi\n\nif [[ \"$SDK_NAME\" =~ ([0-9]+.*$) ]]\nthen\n\tUFW_SDK_VERSION=${BASH_REMATCH[1]}\nelse\n    echo \"Could not find sdk version  from SDK_NAME: $SDK_NAME\"\n    exit 1\nfi\n\nif [[ \"$UFW_SDK_PLATFORM\" = \"iphoneos\" ]]\nthen\n    UFW_OTHER_PLATFORM=iphonesimulator\nelse\n    UFW_OTHER_PLATFORM=iphoneos\nfi\n\nif [[ \"$BUILT_PRODUCTS_DIR\" =~ (.*)$UFW_SDK_PLATFORM$ ]]\nthen\n    UFW_OTHER_BUILT_PRODUCTS_DIR=\"${BASH_REMATCH[1]}${UFW_OTHER_PLATFORM}\"\nelse\n    echo \"Could not find $UFW_SDK_PLATFORM in $BUILT_PRODUCTS_DIR\"\n    exit 1\nfi\n\n\n# Short-circuit if all binaries are up to date\n\nif [[ -f \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" ]] && \\\n   [[ -f \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/${EXECUTABLE_PATH}\" ]] && \\\n   [[ ! \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" -nt \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/${EXECUTABLE_PATH}\" ]]\n   [[ -f \"${UFW_OTHER_BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" ]] && \\\n   [[ -f \"${UFW_OTHER_BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/${EXECUTABLE_PATH}\" ]] && \\\n   [[ ! \"${UFW_OTHER_BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" -nt \"${UFW_OTHER_BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/${EXECUTABLE_PATH}\" ]]\nthen\n    exit 0\nfi\n\n\n# Clean other platform if needed\n\nif [[ ! -f \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" ]]\nthen\n\techo \"Platform \\\"$UFW_SDK_PLATFORM\\\" was cleaned recently. Cleaning \\\"$UFW_OTHER_PLATFORM\\\" as well\"\n\techo xcodebuild -project \"${PROJECT_FILE_PATH}\" -target \"${TARGET_NAME}\" -configuration \"${CONFIGURATION}\" -sdk ${UFW_OTHER_PLATFORM}${UFW_SDK_VERSION} BUILD_DIR=\"${BUILD_DIR}\" CONFIGURATION_TEMP_DIR=\"${PROJECT_TEMP_DIR}/${CONFIGURATION}-${UFW_OTHER_PLATFORM}\" clean\n\txcodebuild -project \"${PROJECT_FILE_PATH}\" -target \"${TARGET_NAME}\" -configuration \"${CONFIGURATION}\" -sdk ${UFW_OTHER_PLATFORM}${UFW_SDK_VERSION} BUILD_DIR=\"${BUILD_DIR}\" CONFIGURATION_TEMP_DIR=\"${PROJECT_TEMP_DIR}/${CONFIGURATION}-${UFW_OTHER_PLATFORM}\" clean\nfi\n\n\n# Make sure we are building from fresh binaries\n\nrm -rf \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\"\nrm -rf \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework\"\nrm -rf \"${UFW_OTHER_BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\"\nrm -rf \"${UFW_OTHER_BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework\"\n";
+		};
+		CC0831C21624858400D3A4E2 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e\n\nset +u\nif [[ $UFW_MASTER_SCRIPT_RUNNING ]]\nthen\n    # Nothing for the slave script to do\n    exit 0\nfi\nset -u\nexport UFW_MASTER_SCRIPT_RUNNING=1\n\n\n# Functions\n\n## List files in the specified directory, storing to the specified array.\n#\n# @param $1 The path to list\n# @param $2 The name of the array to fill\n#\n##\nlist_files ()\n{\n    filelist=$(ls \"$1\")\n    while read line\n    do\n        eval \"$2[\\${#$2[*]}]=\\\"\\$line\\\"\"\n    done <<< \"$filelist\"\n}\n\n\n# Sanity check\n\nif [[ ! -f \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" ]]\nthen\n    echo \"Framework target \\\"${TARGET_NAME}\\\" had no source files to build from. Make sure your source files have the correct target membership\"\n    exit 1\nfi\n\n\n# Gather information\n\nif [[ \"$SDK_NAME\" =~ ([A-Za-z]+) ]]\nthen\n    UFW_SDK_PLATFORM=${BASH_REMATCH[1]}\nelse\n    echo \"Could not find platform name from SDK_NAME: $SDK_NAME\"\n    exit 1\nfi\n\nif [[ \"$SDK_NAME\" =~ ([0-9]+.*$) ]]\nthen\n    UFW_SDK_VERSION=${BASH_REMATCH[1]}\nelse\n    echo \"Could not find sdk version from SDK_NAME: $SDK_NAME\"\n    exit 1\nfi\n\nif [[ \"$UFW_SDK_PLATFORM\" = \"iphoneos\" ]]\nthen\n    UFW_OTHER_PLATFORM=iphonesimulator\nelse\n    UFW_OTHER_PLATFORM=iphoneos\nfi\n\nif [[ \"$BUILT_PRODUCTS_DIR\" =~ (.*)$UFW_SDK_PLATFORM$ ]]\nthen\n    UFW_OTHER_BUILT_PRODUCTS_DIR=\"${BASH_REMATCH[1]}${UFW_OTHER_PLATFORM}\"\nelse\n    echo \"Could not find $UFW_SDK_PLATFORM in $BUILT_PRODUCTS_DIR\"\n    exit 1\nfi\n\n\n# Short-circuit if all binaries are up to date.\n# We already checked the other platform in the prerun script.\n\nif [[ -f \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" ]] && [[ -f \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/${EXECUTABLE_PATH}\" ]] && [[ ! \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" -nt \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/${EXECUTABLE_PATH}\" ]]\nthen\n    exit 0\nfi\n\n\n# Make sure the other platform gets built\n\necho \"Build other platform\"\n\necho xcodebuild -project \"${PROJECT_FILE_PATH}\" -target \"${TARGET_NAME}\" -configuration \"${CONFIGURATION}\" -sdk ${UFW_OTHER_PLATFORM}${UFW_SDK_VERSION} BUILD_DIR=\"${BUILD_DIR}\" CONFIGURATION_TEMP_DIR=\"${PROJECT_TEMP_DIR}/${CONFIGURATION}-${UFW_OTHER_PLATFORM}\" $ACTION\nxcodebuild -project \"${PROJECT_FILE_PATH}\" -target \"${TARGET_NAME}\" -configuration \"${CONFIGURATION}\" -sdk ${UFW_OTHER_PLATFORM}${UFW_SDK_VERSION} BUILD_DIR=\"${BUILD_DIR}\" CONFIGURATION_TEMP_DIR=\"${PROJECT_TEMP_DIR}/${CONFIGURATION}-${UFW_OTHER_PLATFORM}\" $ACTION\n\n\n# Build the fat static library binary\n\necho \"Create universal static library\"\n\necho \"$PLATFORM_DEVELOPER_BIN_DIR/libtool\" -static \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" \"${UFW_OTHER_BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" -o \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}.temp\"\n\"$PLATFORM_DEVELOPER_BIN_DIR/libtool\" -static \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" \"${UFW_OTHER_BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" -o \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}.temp\"\n\necho mv \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}.temp\" \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\"\nmv \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}.temp\" \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\"\n\n\n# Build framework structure\n\necho \"Build symlinks\"\n\necho ln -sf A \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/Versions/Current\"\nln -sf A \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/Versions/Current\"\necho ln -sf Versions/Current/Headers \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/Headers\"\nln -sf Versions/Current/Headers \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/Headers\"\necho ln -sf Versions/Current/Resources \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/Resources\"\nln -sf Versions/Current/Resources \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/Resources\"\necho ln -sf \"Versions/Current/${EXECUTABLE_NAME}\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/${EXECUTABLE_NAME}\"\nln -sf \"Versions/Current/${EXECUTABLE_NAME}\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/${EXECUTABLE_NAME}\"\n\n\n# Link to binary for unit tests\n\nmkdir -p \"${BUILT_PRODUCTS_DIR}/.fake_fw_testing.framework\"\nln -sf \"../${WRAPPER_NAME}/${EXECUTABLE_NAME}\" \"${BUILT_PRODUCTS_DIR}/.fake_fw_testing.framework/.fake_fw_testing\"\n\n\n# Build embedded framework structure\n\necho \"Build Embedded Framework\"\n\necho rm -rf \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework\"\nrm -rf \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework\"\necho mkdir -p \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/Resources\"\nmkdir -p \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/Resources\"\necho cp -a \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/\"\ncp -a \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/\"\n\ndeclare -a UFW_FILE_LIST\nlist_files \"${BUILT_PRODUCTS_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}\" UFW_FILE_LIST\nfor filename in \"${UFW_FILE_LIST[@]}\"\ndo\n    if [[ \"${filename}\" != \"Info.plist\" ]] && [[ ! \"${filename}\" =~ .*\\.lproj$ ]]\n    then\n        echo ln -sf \"../${WRAPPER_NAME}/Resources/${filename}\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/Resources/${filename}\"\n        ln -sf \"../${WRAPPER_NAME}/Resources/${filename}\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/Resources/${filename}\"\n    fi\ndone\n\n\n# Replace other platform's framework with a copy of this one (so that both have the same universal binary)\n\necho \"Copy from $UFW_SDK_PLATFORM to $UFW_OTHER_PLATFORM\"\n\necho rm -rf \"${BUILD_DIR}/${CONFIGURATION}-${UFW_OTHER_PLATFORM}\"\nrm -rf \"${BUILD_DIR}/${CONFIGURATION}-${UFW_OTHER_PLATFORM}\"\necho cp -a \"${BUILD_DIR}/${CONFIGURATION}-${UFW_SDK_PLATFORM}\" \"${BUILD_DIR}/${CONFIGURATION}-${UFW_OTHER_PLATFORM}\"\ncp -a \"${BUILD_DIR}/${CONFIGURATION}-${UFW_SDK_PLATFORM}\" \"${BUILD_DIR}/${CONFIGURATION}-${UFW_OTHER_PLATFORM}\"\n";
+		};
 		CC4A382A14952404004B7653 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -309,6 +450,25 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		CC0831BE1624858400D3A4E2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CC0831CF162485B800D3A4E2 /* NSArray+Utilities.m in Sources */,
+				CC0831D0162485B800D3A4E2 /* NSAttributeDescription+ColumnTypes.m in Sources */,
+				CC0831D1162485B800D3A4E2 /* NSData+Base64.m in Sources */,
+				CC0831D2162485B800D3A4E2 /* NSDate+Utilities.m in Sources */,
+				CC0831D3162485B800D3A4E2 /* NSEntityDescription+AttributeMapping.m in Sources */,
+				CC0831D4162485B800D3A4E2 /* NSManagedObject+JSON.m in Sources */,
+				CC0831D5162485B800D3A4E2 /* NSManagedObject+URI.m in Sources */,
+				CC0831D6162485B800D3A4E2 /* NSManagedObjectContext+Fetching.m in Sources */,
+				CC0831D7162485B800D3A4E2 /* NSManagedObjectContext+Utilities.m in Sources */,
+				CC0831D8162485B800D3A4E2 /* NSObject+Utilities.m in Sources */,
+				CC0831D9162485B800D3A4E2 /* NSString+Utilities.m in Sources */,
+				CC0831DA162485B800D3A4E2 /* NSNumber+StringUtilities.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CCCAF392152A4F8300E22571 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -328,12 +488,21 @@
 				CCC6F519155B1F9C008E5082 /* NSNumber+StringUtilities.m in Sources */,
 				CCEC2E7E155C1DB9007740D3 /* NSView+BadgeDrawing.m in Sources */,
 				CCA1609D158258120000B335 /* NSButton+Spinner.m in Sources */,
+				CCDE6CCB15F8CDCB000569EE /* NSSearchField+Spinner.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		CC0831C81624858400D3A4E2 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CC0831C91624858400D3A4E2 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		CCCAF3A3152A4F8300E22571 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -345,9 +514,95 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		CC0831CD1624858400D3A4E2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CONTENTS_FOLDER_PATH = "$(WRAPPER_NAME)/Versions/$(FRAMEWORK_VERSION)";
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = NO;
+				DEPLOYMENT_POSTPROCESSING = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "UAShared/UAShared-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/**";
+				INFOPLIST_FILE = "iUAShared/iUAShared-Info.plist";
+				INFOPLIST_PATH = "$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/Info.plist";
+				INSTALL_PATH = "$(BUILT_PRODUCTS_DIR)";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				LD_DYLIB_INSTALL_NAME = "$(DYLIB_INSTALL_NAME_BASE:standardizepath)/$(EXECUTABLE_PATH)";
+				LINK_WITH_STANDARD_LIBRARIES = NO;
+				MACH_O_TYPE = mh_object;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				UNLOCALIZED_RESOURCES_FOLDER_PATH = "$(CONTENTS_FOLDER_PATH)/Resources";
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Debug;
+		};
+		CC0831CE1624858400D3A4E2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CONTENTS_FOLDER_PATH = "$(WRAPPER_NAME)/Versions/$(FRAMEWORK_VERSION)";
+				COPY_PHASE_STRIP = YES;
+				DEAD_CODE_STRIPPING = NO;
+				DEPLOYMENT_POSTPROCESSING = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "UAShared/UAShared-Prefix.pch";
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/**";
+				INFOPLIST_FILE = "iUAShared/iUAShared-Info.plist";
+				INFOPLIST_PATH = "$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/Info.plist";
+				INSTALL_PATH = "$(BUILT_PRODUCTS_DIR)";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				LD_DYLIB_INSTALL_NAME = "$(DYLIB_INSTALL_NAME_BASE:standardizepath)/$(EXECUTABLE_PATH)";
+				LINK_WITH_STANDARD_LIBRARIES = NO;
+				MACH_O_TYPE = mh_object;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				UNLOCALIZED_RESOURCES_FOLDER_PATH = "$(CONTENTS_FOLDER_PATH)/Resources";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Release;
+		};
 		CC4A382814952349004B7653 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -355,6 +610,7 @@
 		CC4A382914952349004B7653 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -362,7 +618,6 @@
 		CCC4516D14807A4F00F370E8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -370,7 +625,6 @@
 		CCC4516E14807A4F00F370E8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
@@ -380,6 +634,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -407,6 +662,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = macosx;
 				WRAPPER_EXTENSION = framework;
 			};
 			name = Debug;
@@ -416,6 +672,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -436,6 +693,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = macosx;
 				WRAPPER_EXTENSION = framework;
 			};
 			name = Release;
@@ -443,6 +701,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		CC0831CC1624858400D3A4E2 /* Build configuration list for PBXNativeTarget "iUAShared" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CC0831CD1624858400D3A4E2 /* Debug */,
+				CC0831CE1624858400D3A4E2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		CC4A382714952349004B7653 /* Build configuration list for PBXAggregateTarget "Documentation" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
