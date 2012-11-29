@@ -11,5 +11,6 @@
 @interface NSDate (Utilities)
 
 - (NSString *)ISO8601StringFromDate;
+- (NSString *)mediumFormatDate;
 
 @end

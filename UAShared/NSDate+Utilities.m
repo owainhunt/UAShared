@@ -17,4 +17,12 @@
     return [df stringFromDate:self];
 }
 
+
+- (NSString *)mediumFormatDate
+{
+    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+    df.dateStyle = NSDateFormatterMediumStyle;
+    return [df stringFromDate:self];
+}
+
 @end
